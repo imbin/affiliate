@@ -1,7 +1,7 @@
 # 广告联盟系统
 
 这是我对于PHP开发多年的一个最佳实践的演示系统。
-前端采用VueJS 2.6, 后端Laravel 6.2，基于MySQL 5.7存储。
+前端采用VueJS 2.6 + ElementUI, 后端采用PHP Laravel 6.2，基于MySQL 5.7存储。
 没有做的太复杂，在于演示前后端分离系统的开发，展示了VueJS+PHP(Laravel)+MySQL的操作流程，是一个完整能运行的系统。
 拥有联盟客模块、订单模块、素材模块。
 涉及RabbitMQ消息中间件的部分不好演示，就没有放进来。
@@ -156,3 +156,10 @@ class BannerModel extends ValidateBaseModel
     }
 }
 ```
+
+## 系统运行效果图
+
+ ![image](https://github.com/imbin/affiliate/raw/master/screenshots/homepage.png)
+ ![image](https://github.com/imbin/affiliate/raw/master/screenshots/banners)
+ ![image](https://github.com/imbin/affiliate/raw/master/screenshots/admin-banners.png)
+ ![image](https://github.com/imbin/affiliate/raw/master/screenshots/admin-order-create.png)
