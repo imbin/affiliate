@@ -160,6 +160,6 @@ class BannerModel extends ValidateBaseModel
 ## 系统运行效果图
 
  ![image](https://github.com/imbin/affiliate/raw/master/screenshots/homepage.png)
- ![image](https://github.com/imbin/affiliate/raw/master/screenshots/banners)
+ ![image](https://github.com/imbin/affiliate/raw/master/screenshots/banners.png)
  ![image](https://github.com/imbin/affiliate/raw/master/screenshots/admin-banners.png)
  ![image](https://github.com/imbin/affiliate/raw/master/screenshots/admin-order-create.png)
