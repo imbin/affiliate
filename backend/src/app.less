@@ -1,0 +1,92 @@
+@header-color: #1976D2;
+@white: #ffffff;
+@bg-color: #EEF5F9;
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: @white;
+}
+h1 {
+  font-weight: 300;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both
+}
+
+.el-main {
+  padding-top: 0;
+}
+
+.el-header {
+  background-color: @header-color;
+  color: @white !important;
+  line-height: 60px;
+  padding: 0;
+  .logo {
+    width: 400px;
+    float: left;
+    h1 {
+      line-height: 60px;
+      margin: 0;
+      padding: 0;
+      padding-left: 15px;
+      text-align: center;
+    }
+  }
+  .header-nav {
+    display: inline-block;
+    float: right;
+    margin: 0;
+
+    .el-submenu__title {
+      i {
+        color: @white;
+      }
+      border-bottom-color: @header-color !important;
+    }
+
+    .el-menu[role='menu'] {
+      background-color: @white !important;
+
+      .el-menu-item {
+        background-color: @white !important;
+        color: #000 !important;
+      }
+
+      i {
+        color: #000 !important;
+      }
+    }
+  }
+}
+
+.el-aside {
+  background-color: @white;
+  line-height: 200px;
+
+  .el-menu[role='menubar'] {
+    min-height: 100% !important;
+  }
+}
+
+.breadcrumb {
+  margin-bottom: 20px;
+  h3 {
+    margin: 0;
+    padding: 0;
+  }
+
+  .el-breadcrumb {
+    float: right;
+    line-height: 25px;
+  }
+}
