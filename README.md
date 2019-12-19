@@ -45,7 +45,7 @@ class BannerController extends Controller
         $totalRows = 0;
         $list = BannerService::singleton()->findListByPage($post, $totalRows);
 
-        foreach ($list as &$item) {
+        foreach ($list as $item) {
             $item->thumb_url = UtilHelper::thumbUrl( $item->pic_url);
             $item->statusText = BannerEnum::STATUS_TEXT_LIST[$item->status] ?? '';
         }
