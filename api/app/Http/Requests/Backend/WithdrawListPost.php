@@ -7,7 +7,7 @@ use App\Http\Requests\BasePageListPost;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class RegisterPost
+ * Class WithdrawListPost
  * @package App\Http\Requests
  *
  * @property $sn string

@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-06
  * Time: 23:51
  */
@@ -75,7 +75,7 @@ class BannerModel extends ValidateBaseModel
     }
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-24
      *
      * @param int $sku

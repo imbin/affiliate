@@ -9,7 +9,7 @@ use App\Models\OrderGoodsModel;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class RegisterPost
+ * Class OrderEditPost
  * @package App\Http\Requests
  *
  * @property int $order_status 订单状态:1=未付款、2=已取消、3=已付款、4=已发货

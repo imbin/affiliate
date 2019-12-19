@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-07
  * Time: 00:02
  */
@@ -21,7 +21,7 @@ class BannerController extends Controller
 {
     /**
      * 列表
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-13
      *
      * @param BannerListPost $post
@@ -33,7 +33,7 @@ class BannerController extends Controller
         $totalRows = 0;
         $list = BannerService::singleton()->findListByPage($post, $totalRows);
 
-        foreach ($list as &$item) {
+        foreach ($list as $item) {
             $item->thumb_url = UtilHelper::thumbUrl( $item->pic_url);
             $item->statusText = BannerEnum::STATUS_TEXT_LIST[$item->status] ?? '';
         }
@@ -47,7 +47,7 @@ class BannerController extends Controller
     }
     /**
      * 创建
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param BannerEditPost $post
@@ -70,7 +70,7 @@ class BannerController extends Controller
 
     /**
      * 修改
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param int $id
@@ -97,7 +97,7 @@ class BannerController extends Controller
 
     /**
      * 删除
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param int $id

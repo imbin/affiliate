@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-08
  * Time: 01:15
  */
@@ -16,7 +16,7 @@ class BaseService
     private static $_instance = null;
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-09
      * @return $this
      */

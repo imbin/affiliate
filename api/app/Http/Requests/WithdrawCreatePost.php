@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class RegisterPost
+ * Class WithdrawCreatePost
  * @package App\Http\Requests
  *
  * @property $way string

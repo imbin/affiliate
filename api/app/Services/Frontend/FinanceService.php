@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-07
  * Time: 00:03
  */
@@ -26,7 +26,7 @@ class FinanceService extends BaseService
 {
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param int $id
@@ -39,7 +39,7 @@ class FinanceService extends BaseService
     }
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-24
      *
      * @param string $sn
@@ -51,7 +51,7 @@ class FinanceService extends BaseService
         return FinanceTradeModel::singleton()->findBySn( $sn);
     }
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-13
      *
      * @param int $userId
@@ -70,7 +70,7 @@ class FinanceService extends BaseService
     }
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-25
      *
      * @param int $userId
@@ -84,7 +84,7 @@ class FinanceService extends BaseService
 
     /**
      * 提现列表
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-25
      *
      * @param int $userId
@@ -104,7 +104,7 @@ class FinanceService extends BaseService
 
     /**
      * 创建一个提现
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-25
      *
      * @param int $userId

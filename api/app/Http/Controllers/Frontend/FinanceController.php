@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-07
  * Time: 00:02
  */
@@ -24,7 +24,7 @@ class FinanceController extends Controller
 {
     /**
      * 收到明细列表
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-13
      *
      * @param BasePageListPost $post
@@ -38,7 +38,7 @@ class FinanceController extends Controller
         $list = FinanceService::singleton()->findTradeListByPage($userId, $post, $totalRows);
 
         if (count($list)) {
-            foreach ( $list as &$item ) {
+            foreach ( $list as $item ) {
                 $item->typeText = CommonEnum::FINANCE_TRADE_TYPE_TEXT_LIST[ $item->type ] ?? '';
             }
         }
@@ -53,7 +53,7 @@ class FinanceController extends Controller
 
     /**
      * 查余额
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-24
      */
     public function actionBalance()
@@ -75,7 +75,7 @@ class FinanceController extends Controller
 
     /**
      * 提现申请
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-25
      */
     public function actionWithdrawCreate(WithdrawCreatePost $post)
@@ -96,7 +96,7 @@ class FinanceController extends Controller
 
     /**
      * 提现列表
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-25
      *
      * @param BasePageListPost $post

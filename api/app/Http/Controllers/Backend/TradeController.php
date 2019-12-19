@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-07
  * Time: 00:02
  */
@@ -24,7 +24,7 @@ class TradeController extends Controller
 {
     /**
      * 列表
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-13
      *
      * @param TradeListPost $post
@@ -36,7 +36,7 @@ class TradeController extends Controller
         $totalRows = 0;
         $list = TradeService::singleton()->findListByPage($post, $totalRows);
 
-        foreach ($list as &$item) {
+        foreach ($list as $item) {
             $item->setAttribute( 'typeText', CommonEnum::FINANCE_TRADE_TYPE_TEXT_LIST[$item->type]);
         }
 

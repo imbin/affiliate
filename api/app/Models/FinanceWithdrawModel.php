@@ -1,6 +1,6 @@
 <?php
 /**
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-24
  */
 
@@ -37,7 +37,7 @@ class FinanceWithdrawModel extends ValidateBaseModel
 
     /**
      * 获取验证规则
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-02-25
      *
      * 'title' => 'required|max:255',
@@ -52,7 +52,7 @@ class FinanceWithdrawModel extends ValidateBaseModel
     }
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-25
      *
      * @param string $sn

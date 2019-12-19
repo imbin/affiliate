@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-07
  * Time: 00:02
  */
@@ -22,7 +22,7 @@ class UserController extends Controller
 {
     /**
      * 列表
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-13
      *
      * @param UserListPost $post
@@ -34,7 +34,7 @@ class UserController extends Controller
         $totalRows = 0;
         $list = UserService::singleton()->findListByPage($post, $totalRows);
 
-        foreach ($list as &$item) {
+        foreach ($list as $item) {
             $item->statusText = UserEnum::STATUS_TEXT_LIST[$item->status] ?? '';
             $item->disableText = CommonEnum::DISABLED_TEXT_LIST[$item->is_disabled] ?? '';
         }
@@ -49,7 +49,7 @@ class UserController extends Controller
 
     /**
      * 修改
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param int $id
@@ -76,7 +76,7 @@ class UserController extends Controller
 
     /**
      * 操作联盟客状态：审核通过、驳回、禁用、启用
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param int $id

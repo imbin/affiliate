@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 /**
- * Class RegisterPost
+ * Class EditProfilePost
  * @package App\Http\Requests
  *
  * @property $email string

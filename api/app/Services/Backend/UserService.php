@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-07
  * Time: 00:03
  */
@@ -28,7 +28,7 @@ class UserService extends BaseService
 {
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param $id
@@ -42,7 +42,7 @@ class UserService extends BaseService
     }
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param $id
@@ -56,7 +56,7 @@ class UserService extends BaseService
     }
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param $id
@@ -77,7 +77,7 @@ class UserService extends BaseService
         return $model->save();
     }
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param int $id
@@ -90,7 +90,7 @@ class UserService extends BaseService
     }
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-24
      *
      * @param array $id
@@ -102,7 +102,7 @@ class UserService extends BaseService
         return UsersModel::singleton()->findListById( $id);
     }
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-13
      *
      * @param BasePageListPost $post
@@ -166,7 +166,7 @@ class UserService extends BaseService
     }
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-16
      *
      * @param string $startTime
@@ -188,7 +188,7 @@ class UserService extends BaseService
 
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-25
      *
      * @param int $userId
@@ -202,7 +202,7 @@ class UserService extends BaseService
 
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-26
      *
      * @param int $userId

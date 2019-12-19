@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-07
  * Time: 00:03
  */
@@ -18,7 +18,7 @@ class OrderService extends BaseService
 {
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param int $id
@@ -31,7 +31,7 @@ class OrderService extends BaseService
     }
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-24
      *
      * @param string $sn
@@ -43,7 +43,7 @@ class OrderService extends BaseService
         return OrderInfoModel::singleton()->findBySn( $sn);
     }
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param int|array $id
@@ -55,7 +55,7 @@ class OrderService extends BaseService
         return OrderGoodsModel::singleton()->findListByOrderId( $id);
     }
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-13
      *
      * @param OrderListPost $post

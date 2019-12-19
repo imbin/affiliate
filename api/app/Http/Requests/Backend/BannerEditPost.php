@@ -7,7 +7,7 @@ use App\Http\Requests\BasePageListPost;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class RegisterPost
+ * Class BannerEditPost
  * @package App\Http\Requests
  *
  * @property string $title 标题

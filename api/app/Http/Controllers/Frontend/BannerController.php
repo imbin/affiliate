@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-06
  * Time: 22:59
  */
@@ -22,7 +22,7 @@ class BannerController extends Controller
         $totalRows = 0;
         $list = BannerService::singleton()->findListByPage( $post, $totalRows);
         $ret = [];
-        foreach ($list as &$item) {
+        foreach ($list as $item) {
             $ret[] = [
                 'id' => $item->id,
                 'title' => $item->title,

@@ -1,7 +1,7 @@
 <?php
 /**
  * Description:
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-02-25
  * Time: 20:20
  */
@@ -25,7 +25,7 @@ trait FindListTrait
     }
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-24
      *
      * @param array $id
@@ -39,7 +39,7 @@ trait FindListTrait
 
     /**
      * 分页获取多个实例（Model数组）
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-03-02    *
      *
      * @param array $where
@@ -60,7 +60,7 @@ trait FindListTrait
     }
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-09
      * @return $this
      */

@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-07
  * Time: 00:02
  */
@@ -22,7 +22,7 @@ class WithdrawController extends Controller
 {
     /**
      * 列表
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-13
      *
      * @param WithdrawListPost $post
@@ -34,7 +34,7 @@ class WithdrawController extends Controller
         $totalRows = 0;
         $list = WithdrawService::singleton()->findListByPage($post, $totalRows);
 
-        foreach ($list as &$item) {
+        foreach ($list as $item) {
             $item->setAttribute( 'statusText', CommonEnum::WITHDRAW_STATUS_TEXT_LIST[$item->status]);
             $item->setAttribute( 'wayText', CommonEnum::WITHDRAW_WAY_TEXT_LIST[$item->way]);
         }
@@ -49,7 +49,7 @@ class WithdrawController extends Controller
 
     /**
      * 修改
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param int $id
@@ -76,7 +76,7 @@ class WithdrawController extends Controller
 
     /**
      * 操作提现状态：审核通过、驳回
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param int $id

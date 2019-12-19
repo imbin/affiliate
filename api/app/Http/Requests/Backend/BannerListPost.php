@@ -6,7 +6,7 @@ use App\Http\Requests\BasePageListPost;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class RegisterPost
+ * Class BannerListPost
  * @package App\Http\Requests
  *
  * @property $title string

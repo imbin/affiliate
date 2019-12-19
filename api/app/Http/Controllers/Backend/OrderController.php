@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-07
  * Time: 00:02
  */
@@ -25,7 +25,7 @@ class OrderController extends Controller
 {
     /**
      * 列表
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-13
      *
      * @param OrderListPost $post
@@ -48,7 +48,7 @@ class OrderController extends Controller
             $tmpList = UserService::singleton()->findListById( $idList);
             $orderUserList = array_column($tmpList, null, 'id');
             Log::info('goodsList2',  $orderGoodsList);
-            foreach ( $list as &$item ) {
+            foreach ( $list as $item ) {
                 if (isset( $orderGoodsList[$item->id])) {
                     $item->setAttribute( 'goods_list', $orderGoodsList[ $item->id ] );
                 } else {
@@ -74,7 +74,7 @@ class OrderController extends Controller
     }
     /**
      * 创建
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param OrderCreatePost $post
@@ -101,7 +101,7 @@ class OrderController extends Controller
 
     /**
      * 修改
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param int $id
@@ -131,7 +131,7 @@ class OrderController extends Controller
 
     /**
      * 修改
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param int $id

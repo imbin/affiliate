@@ -6,7 +6,7 @@ use App\Http\Requests\BasePageListPost;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class RegisterPost
+ * Class ImageUploadPost
  * @package App\Http\Requests
  *
  * @property $image file

@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Class RegisterPost
+ * Class EditPasswordPost
  * @package App\Http\Requests
  *
  * @property $realName string

@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-07
  * Time: 00:03
  */
@@ -21,7 +21,7 @@ use App\Utils\UtilHelper;
 class AdminUserService extends BaseService
 {
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-13
      *
      * @param BasePageListPost $post
@@ -49,7 +49,7 @@ class AdminUserService extends BaseService
     }
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param $id
@@ -63,7 +63,7 @@ class AdminUserService extends BaseService
 
     /**
      *
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-07
      *
      * @param $userName
@@ -80,7 +80,7 @@ class AdminUserService extends BaseService
     }
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param int $id

@@ -1,6 +1,6 @@
 <?php
 /**
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-24
  */
 namespace App\Models;
@@ -47,7 +47,7 @@ class FinanceTradeModel extends ValidateBaseModel
     }
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-24
      *
      * @param $sn

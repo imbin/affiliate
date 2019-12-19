@@ -13,7 +13,7 @@ class Controller extends BaseController
 
     /**
      *
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-07
      *
      * @param string|array|object $data
@@ -31,7 +31,7 @@ class Controller extends BaseController
 
     /**
      *
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-07
      *
      * @param int $code

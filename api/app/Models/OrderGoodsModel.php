@@ -1,6 +1,6 @@
 <?php
 /**
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-24
  */
 
@@ -51,7 +51,7 @@ class OrderGoodsModel extends ValidateBaseModel
 
     /**
      * 获取指定订单的商品列表
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-24
      *
      * @param int $orderId

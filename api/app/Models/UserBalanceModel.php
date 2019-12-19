@@ -1,6 +1,6 @@
 <?php
 /**
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-24
  */
 
@@ -48,7 +48,7 @@ class UserBalanceModel extends ValidateBaseModel
     }
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-24
      *
      * @param int $userId
@@ -61,7 +61,7 @@ class UserBalanceModel extends ValidateBaseModel
     }
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-25
      *
      * @param int $userId
@@ -75,7 +75,7 @@ class UserBalanceModel extends ValidateBaseModel
 
     /**
      * 计算总余额 = 总余额 - 已提现 - 冻结中
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-25
      * @return string
      */

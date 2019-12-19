@@ -1,6 +1,6 @@
 <?php
 /**
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-24
  */
 
@@ -50,7 +50,7 @@ class OrderInfoModel extends ValidateBaseModel
     }
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-24
      *
      * @param $orderSn

@@ -1,7 +1,7 @@
 <?php
 /**
  * Description:
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-02-25
  * Time: 20:20
  */
@@ -31,7 +31,7 @@ abstract class ValidateBaseModel extends Model
 
     /**
      * Description:获取验证规则
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-02-25
      *
      * 'title' => 'required|unique:posts|max:255',
@@ -49,7 +49,7 @@ abstract class ValidateBaseModel extends Model
     protected $messageBag;
     /**
      * Description: 验证数据是否符合格式要求，在入库前调用判断
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-02-25
      * @return bool true=验证通过,false=验证失败
      */
@@ -67,7 +67,7 @@ abstract class ValidateBaseModel extends Model
 
     /**
      *
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-02-26
      * @return MessageBag
      */
@@ -77,7 +77,7 @@ abstract class ValidateBaseModel extends Model
     }
     /**
      *
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-02-26
      * @return array
      */

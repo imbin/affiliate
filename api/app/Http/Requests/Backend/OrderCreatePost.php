@@ -9,7 +9,7 @@ use App\Models\OrderGoodsModel;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class RegisterPost
+ * Class OrderCreatePost
  * @package App\Http\Requests
  *
  * @property int $user_id 所属用户

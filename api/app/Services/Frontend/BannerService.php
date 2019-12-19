@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-07
  * Time: 00:03
  */
@@ -17,7 +17,7 @@ class BannerService extends BaseService
 {
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param int $id
@@ -29,7 +29,7 @@ class BannerService extends BaseService
         return BannerModel::singleton()->findById( $id);
     }
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-13
      *
      * @param BasePageListPost $post

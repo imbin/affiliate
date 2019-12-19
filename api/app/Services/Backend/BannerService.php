@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-07
  * Time: 00:03
  */
@@ -32,7 +32,7 @@ class BannerService extends BaseService
     }
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param $id
@@ -57,7 +57,7 @@ class BannerService extends BaseService
         return $model->save();
     }
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param int $id
@@ -70,7 +70,7 @@ class BannerService extends BaseService
     }
 
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-24
      *
      * @param int $sku
@@ -82,7 +82,7 @@ class BannerService extends BaseService
         return BannerModel::singleton()->findBySku( $sku);
     }
     /**
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-13
      *
      * @param BannerListPost $post

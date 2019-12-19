@@ -6,7 +6,7 @@ use App\Http\Requests\BasePageListPost;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class RegisterPost
+ * Class UserListPost
  * @package App\Http\Requests
  *
  * @property $id string

@@ -6,7 +6,7 @@ use App\Enum\OrderEnum;
 use App\Http\Requests\BasePageListPost;
 
 /**
- * Class RegisterPost
+ * Class OrderListPost
  * @package App\Http\Requests
  *
  * @property $order_sn string

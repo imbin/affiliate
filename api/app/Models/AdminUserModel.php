@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-06
  * Time: 23:49
  */
@@ -75,7 +75,7 @@ class AdminUserModel extends Authenticatable implements JWTSubject
     }
     /**
      *
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-07
      *
      * @param $userName

@@ -1,6 +1,6 @@
 <?php
 /**
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-09
  */
 
@@ -48,7 +48,7 @@ class UtilHelper
 
     /**
      * 验证密码
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-12
      *
      * @param string $hashedPwd
@@ -63,7 +63,7 @@ class UtilHelper
 
     /**
      * 生成动态缩略图
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-19
      *
      * @param string $picUrl
@@ -77,7 +77,7 @@ class UtilHelper
 
     /**
      * 生成随机单号
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-25
      *
      * @param int $length

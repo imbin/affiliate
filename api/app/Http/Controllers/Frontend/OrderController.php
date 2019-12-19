@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-07
  * Time: 00:02
  */
@@ -20,7 +20,7 @@ class OrderController extends Controller
 {
     /**
      * 列表
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-13
      *
      * @param OrderListPost $post
@@ -39,7 +39,7 @@ class OrderController extends Controller
             foreach ($tmpList as $goods) {
                 $orderGoodsList[$goods->order_id][] = $goods;
             }
-            foreach ( $list as &$item ) {
+            foreach ( $list as $item ) {
                 if (isset( $orderGoodsList[$item->id])) {
                     $item->setAttribute( 'goods_list', $orderGoodsList[ $item->id ] );
                 } else {

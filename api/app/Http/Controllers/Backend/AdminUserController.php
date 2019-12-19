@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Author: zhaobin
+ * @author: tobinzhao@gmail.com
  * Date: 2019-11-07
  * Time: 00:02
  */
@@ -27,7 +27,7 @@ class AdminUserController extends Controller
 {
     /**
      * 列表
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-13
      *
      * @param BasePageListPost $post
@@ -49,7 +49,7 @@ class AdminUserController extends Controller
 
     /**
      * 修改账号
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param AdminUserEditPost $post
@@ -85,7 +85,7 @@ class AdminUserController extends Controller
 
     /**
      * 修改账号
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-14
      *
      * @param int $id
@@ -114,7 +114,7 @@ class AdminUserController extends Controller
     }
     /**
      * 前台登录
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-07
      *
      * @param Request $request
@@ -143,7 +143,7 @@ class AdminUserController extends Controller
 
     /**
      * 创建账号
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-07
      *
      * @param RegisterAdminPost $post
@@ -179,7 +179,7 @@ class AdminUserController extends Controller
 
     /**
      * 修改自己的密码
-     * Author: zhaobin
+     * @author: tobinzhao@gmail.com
      * Date: 2019-11-11
      *
      * @param EditPasswordPost $post
