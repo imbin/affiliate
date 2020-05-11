@@ -30,8 +30,6 @@ Route::group(['prefix' => '/', 'domain' => env('HOST_ADMIN'), 'middleware' => 'j
     Route::delete('admin/{id}', 'AdminUserController@actionDelete')->where(['id' => '[0-9]+']);
     //修改管理员
     Route::put('admin/edit/{id}', 'AdminUserController@actionEdit')->where(['id' => '[0-9]+']);
-    //创建管理员
-    Route::put('admin/edit', 'AdminUserController@actionCreate');
 
     //联盟客列表
     Route::post('users/list', 'UserController@actionList');
@@ -41,7 +39,7 @@ Route::group(['prefix' => '/', 'domain' => env('HOST_ADMIN'), 'middleware' => 'j
     Route::put('users/edit/{id}', 'UserController@actionEdit')->where(['id' => '[0-9]+']);
 
     //后台首页
-    Route::get('disaboard', 'DashboardController@actionInfo');
+    Route::get('dashboard', 'DashboardController@actionInfo');
 
     //素材Banner(CRUD)
     Route::get('banners', 'BannerController@actionList');

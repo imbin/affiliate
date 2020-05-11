@@ -50,7 +50,7 @@
     mounted(){
       var _this = this;
       _this.$store.dispatch('Loading', true);
-      _this.$fetch('/disaboard').then(function(resp) {
+      _this.$fetch('/dashboard').then(function(resp) {
         _this.$store.dispatch('Loading', false);
         if (resp.code == 0) {
           _this.users = resp.data.users;
