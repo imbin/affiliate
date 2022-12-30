@@ -26,7 +26,7 @@
     "@vue/cli-plugin-e2e-cypress": "^4.0.0",
     "@vue/cli-plugin-eslint": "^4.0.0",
     "@vue/cli-plugin-router": "^4.0.0",
-    "@vue/cli-plugin-unit-mocha": "^4.0.0",
+    "@vue/cli-plugin-unit-mocha": "^5.0.8",
     "@vue/cli-plugin-vuex": "^4.0.0",
     "@vue/cli-service": "^4.0.0",
     "@vue/test-utils": "1.0.0-beta.29",
