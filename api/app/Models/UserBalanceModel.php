@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\DB;
  *
  * @property int $id
  * @property int $user_id 所属用户
- * @property string $balance 余额（可提现金额）
- * @property string $frozen 冻结金额（提现中）
- * @property string $withdraw 已提现金额
+ * @property float $balance 余额（可提现金额）
+ * @property float $frozen 冻结金额（提现中）
+ * @property float $withdraw 已提现金额
  * @property string $create_time 创建日期
  * @property string $update_time 更新日期
  */
@@ -34,7 +34,7 @@ class UserBalanceModel extends ValidateBaseModel
     /**
      * 获取验证规则
      * Author: xxx
-     * Date: 2019-02-25
+
      *
      * 'title' => 'required|max:255',
      * @return array
@@ -47,9 +47,7 @@ class UserBalanceModel extends ValidateBaseModel
         ];
     }
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-24
+/**
      *
      * @param int $userId
      *
@@ -60,9 +58,7 @@ class UserBalanceModel extends ValidateBaseModel
         return static::query()->insert(['user_id' => $userId]);
     }
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-25
+/**
      *
      * @param int $userId
      *
@@ -75,8 +71,8 @@ class UserBalanceModel extends ValidateBaseModel
 
     /**
      * 计算总余额 = 总余额 - 已提现 - 冻结中
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-25
+
+
      * @return string
      */
     public function computeBalance()

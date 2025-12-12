@@ -29,7 +29,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property string $nick_name 昵称
  * @property int $gender 性别:0=未设置，1=男，2=女
  * @property string $birthday 出生年月
- * @property int $login_count
+ * @property int $login_count 登录次数
  * @property string $last_login_time 最近登录日期
  * @property int $status 状态:1=待审核、2=审核通过、3=驳回
  * @property string $track_code 用于追踪订单的追踪码
@@ -76,7 +76,7 @@ class UsersModel extends Authenticatable implements JWTSubject
     /**
      * 获取验证规则
      * Author: xxx
-     * Date: 2019-02-25
+
      *
      * 'title' => 'required|max:255',
      * @return array
@@ -91,8 +91,8 @@ class UsersModel extends Authenticatable implements JWTSubject
 
     /**
      *
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-07
+
+
      *
      * @param $userName
      *
@@ -105,8 +105,8 @@ class UsersModel extends Authenticatable implements JWTSubject
 
     /**
      *
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-07
+
+
      *
      * @param $mobile
      *
@@ -119,8 +119,8 @@ class UsersModel extends Authenticatable implements JWTSubject
 
     /**
      *
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-07
+
+
      *
      * @param $email
      *
@@ -130,9 +130,7 @@ class UsersModel extends Authenticatable implements JWTSubject
     {
         return static::query()->where(['email'=>$email])->where(['is_disabled'=>CommonEnum::IS_DISABLED_NO])->orderByDesc( 'id')->first();
     }
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-16
+/**
      * @return int
      */
     public function incrementLoginCount()
@@ -142,8 +140,8 @@ class UsersModel extends Authenticatable implements JWTSubject
 
     /**
      * 是否通过审核
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-07
+
+
      * @return bool
      */
     public function isPassed()
@@ -153,8 +151,8 @@ class UsersModel extends Authenticatable implements JWTSubject
 
     /**
      * 是否待审核
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-07
+
+
      * @return bool
      */
     public function isPending()

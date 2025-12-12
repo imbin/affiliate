@@ -24,8 +24,8 @@ class TradeController extends Controller
 {
     /**
      * 列表
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
+
+
      *
      * @param TradeListPost $post
      *

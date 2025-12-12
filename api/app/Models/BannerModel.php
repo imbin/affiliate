@@ -47,7 +47,7 @@ class BannerModel extends ValidateBaseModel
     /**
      * 获取验证规则
      * Author: xxx
-     * Date: 2019-02-25
+
      *
      * 'title' => 'required|max:255',
      * @return array
@@ -74,9 +74,7 @@ class BannerModel extends ValidateBaseModel
         return $this->return_type == BannerEnum::RETURN_TYPE_PERCENT;
     }
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-24
+/**
      *
      * @param int $sku
      *

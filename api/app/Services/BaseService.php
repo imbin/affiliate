@@ -15,9 +15,7 @@ class BaseService
 {
     private static $_instance = null;
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-09
+/**
      * @return $this
      */
     public static function singleton()

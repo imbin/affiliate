@@ -24,8 +24,8 @@ class UserService extends BaseService
 {
     /**
      *
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-07
+
+
      *
      * @param $userName
      *

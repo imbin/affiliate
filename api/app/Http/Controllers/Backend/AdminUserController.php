@@ -27,8 +27,8 @@ class AdminUserController extends Controller
 {
     /**
      * 列表
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
+
+
      *
      * @param BasePageListPost $post
      *
@@ -49,8 +49,8 @@ class AdminUserController extends Controller
 
     /**
      * 修改账号
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+
+
      *
      * @param AdminUserEditPost $post
      *
@@ -85,8 +85,8 @@ class AdminUserController extends Controller
 
     /**
      * 修改账号
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+
+
      *
      * @param int $id
      *
@@ -114,8 +114,8 @@ class AdminUserController extends Controller
     }
     /**
      * 前台登录
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-07
+
+
      *
      * @param Request $request
      *
@@ -143,8 +143,8 @@ class AdminUserController extends Controller
 
     /**
      * 创建账号
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-07
+
+
      *
      * @param RegisterAdminPost $post
      *
@@ -179,8 +179,8 @@ class AdminUserController extends Controller
 
     /**
      * 修改自己的密码
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-11
+
+
      *
      * @param EditPasswordPost $post
      *

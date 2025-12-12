@@ -31,8 +31,8 @@ abstract class ValidateBaseModel extends Model
 
     /**
      * Description:获取验证规则
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-02-25
+
+
      *
      * 'title' => 'required|unique:posts|max:255',
     'body' => 'required'
@@ -49,8 +49,8 @@ abstract class ValidateBaseModel extends Model
     protected $messageBag;
     /**
      * Description: 验证数据是否符合格式要求，在入库前调用判断
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-02-25
+
+
      * @return bool true=验证通过,false=验证失败
      */
     public function validate()
@@ -67,8 +67,8 @@ abstract class ValidateBaseModel extends Model
 
     /**
      *
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-02-26
+
+
      * @return MessageBag
      */
     public function getValidateError()
@@ -77,8 +77,8 @@ abstract class ValidateBaseModel extends Model
     }
     /**
      *
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-02-26
+
+
      * @return array
      */
     public function getFailed()

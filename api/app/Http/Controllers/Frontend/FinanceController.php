@@ -24,8 +24,8 @@ class FinanceController extends Controller
 {
     /**
      * 收到明细列表
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
+
+
      *
      * @param BasePageListPost $post
      *
@@ -53,8 +53,8 @@ class FinanceController extends Controller
 
     /**
      * 查余额
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-24
+
+
      */
     public function actionBalance()
     {
@@ -75,8 +75,8 @@ class FinanceController extends Controller
 
     /**
      * 提现申请
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-25
+
+
      */
     public function actionWithdrawCreate(WithdrawCreatePost $post)
     {
@@ -96,8 +96,8 @@ class FinanceController extends Controller
 
     /**
      * 提现列表
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-25
+
+
      *
      * @param BasePageListPost $post
      * @return JsonResponse

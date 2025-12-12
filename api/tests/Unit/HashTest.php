@@ -4,8 +4,6 @@ namespace Tests\Unit;
 
 use App\Enum\CommonEnum;
 use App\Utils\UtilHelper;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
@@ -19,10 +17,9 @@ class HashTest extends TestCase
     public function testHash()
     {
         $pwd = Str::random(20);
-        echo $pwd;
+        echo $pwd, PHP_EOL;
         $hash = UtilHelper::hashPassword( $pwd);
-        echo $hash;
-
+        echo $hash, PHP_EOL;
         $this->assertGreaterThan(0, strlen($hash));
     }
 

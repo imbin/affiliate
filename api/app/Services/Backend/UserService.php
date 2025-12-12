@@ -27,9 +27,7 @@ use Illuminate\Support\Str;
 class UserService extends BaseService
 {
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+/**
      *
      * @param $id
      *
@@ -41,9 +39,7 @@ class UserService extends BaseService
         return $model->save();
     }
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+/**
      *
      * @param $id
      *
@@ -55,9 +51,7 @@ class UserService extends BaseService
         return $model->save();
     }
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+/**
      *
      * @param $id
      *
@@ -76,9 +70,7 @@ class UserService extends BaseService
 
         return $model->save();
     }
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+/**
      *
      * @param int $id
      *
@@ -89,9 +81,7 @@ class UserService extends BaseService
         return UsersModel::singleton()->findById( $id);
     }
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-24
+/**
      *
      * @param array $id
      *
@@ -101,9 +91,7 @@ class UserService extends BaseService
     {
         return UsersModel::singleton()->findListById( $id);
     }
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
+/**
      *
      * @param BasePageListPost $post
      * @param int $totalRows
@@ -165,9 +153,7 @@ class UserService extends BaseService
         return $model->save();
     }
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-16
+/**
      *
      * @param string $startTime
      * @param string $endTime
@@ -187,9 +173,7 @@ class UserService extends BaseService
     }
 
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-25
+/**
      *
      * @param int $userId
      *
@@ -201,9 +185,7 @@ class UserService extends BaseService
     }
 
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-26
+/**
      *
      * @param int $userId
      * @param $amount

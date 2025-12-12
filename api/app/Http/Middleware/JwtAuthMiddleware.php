@@ -47,7 +47,7 @@ class JwtAuthMiddleware
             Auth::setUser(auth($guard)->user());
 
         } catch (\Exception $e) {
-            $code = CodeEnum::BASE_SERVER_ERROR;
+            $code = CodeEnum::BASE_INVALID_TOKEN;
             $result = [
                 'code' => $code,
                 'msg' => __('base.server_error').$e->getMessage(),

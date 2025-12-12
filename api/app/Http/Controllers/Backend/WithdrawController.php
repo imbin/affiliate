@@ -22,8 +22,8 @@ class WithdrawController extends Controller
 {
     /**
      * 列表
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
+
+
      *
      * @param WithdrawListPost $post
      *
@@ -49,8 +49,8 @@ class WithdrawController extends Controller
 
     /**
      * 修改
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+
+
      *
      * @param int $id
      * @param UserEditPost $post
@@ -76,8 +76,8 @@ class WithdrawController extends Controller
 
     /**
      * 操作提现状态：审核通过、驳回
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+
+
      *
      * @param int $id
      * @param Request $request

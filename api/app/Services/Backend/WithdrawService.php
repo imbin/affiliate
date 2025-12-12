@@ -25,9 +25,7 @@ use Illuminate\Support\Facades\Log;
 class WithdrawService extends BaseService
 {
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+/**
      *
      * @param int $id
      *
@@ -38,9 +36,7 @@ class WithdrawService extends BaseService
         return FinanceWithdrawModel::singleton()->findById( $id);
     }
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-24
+/**
      *
      * @param string $sn
      *
@@ -50,9 +46,7 @@ class WithdrawService extends BaseService
     {
         return FinanceWithdrawModel::singleton()->findBySn( $sn);
     }
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
+/**
      *
      * @param WithdrawListPost $post
      * @param int $totalRows
@@ -73,9 +67,7 @@ class WithdrawService extends BaseService
         return $list;
     }
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+/**
      *
      * @param $id
      *

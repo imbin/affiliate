@@ -37,7 +37,7 @@ class OrderService extends BaseService
             $order->order_time = $post->order_time;
             $order->pay_time = $post->pay_time;
             $order->deliver_time = $post->deliver_time;
-            $order->audit_days = OrderEnum::ORDER_AUDIT_DAYS;
+            $order->grant_days = OrderEnum::ORDER_AUDIT_DAYS;
             $order->user_id = $post->user_id;
             $order->commission_status = OrderEnum::COMMISSION_STATUS_PENDING;
             $order->order_amount = 0;
@@ -86,8 +86,8 @@ class OrderService extends BaseService
 
     /**
      * 发放一笔订单佣金
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-26
+
+
      *
      * @param OrderInfoModel $model
      *
@@ -117,9 +117,7 @@ class OrderService extends BaseService
             return false;
         }
     }
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+/**
      *
      * @param int $id
      *
@@ -130,9 +128,7 @@ class OrderService extends BaseService
         return OrderInfoModel::singleton()->findById( $id);
     }
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-24
+/**
      *
      * @param string $sn
      *
@@ -142,9 +138,7 @@ class OrderService extends BaseService
     {
         return OrderInfoModel::singleton()->findBySn( $sn);
     }
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+/**
      *
      * @param int|array $id
      *
@@ -154,9 +148,7 @@ class OrderService extends BaseService
     {
         return OrderGoodsModel::singleton()->findListByOrderId( $id);
     }
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
+/**
      *
      * @param OrderListPost $post
      * @param int $totalRows

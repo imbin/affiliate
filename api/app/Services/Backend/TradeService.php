@@ -19,9 +19,7 @@ use function PHPUnit\Framework\StaticAnalysis\HappyPath\AssertIsArray\consume;
 class TradeService extends BaseService
 {
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+/**
      *
      * @param int $id
      *
@@ -32,9 +30,7 @@ class TradeService extends BaseService
         return FinanceTradeModel::singleton()->findById( $id);
     }
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-24
+/**
      *
      * @param string $sn
      *
@@ -45,9 +41,7 @@ class TradeService extends BaseService
         return FinanceTradeModel::singleton()->findBySn( $sn);
     }
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-25
+/**
      *
      * @param int $userId
      * @param string $sn
@@ -67,9 +61,7 @@ class TradeService extends BaseService
         return $model->save();
     }
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
+/**
      *
      * @param TradeListPost $post
      * @param int $totalRows

@@ -21,8 +21,8 @@ class BannerController extends Controller
 {
     /**
      * 列表
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
+
+
      *
      * @param BannerListPost $post
      *
@@ -47,8 +47,8 @@ class BannerController extends Controller
     }
     /**
      * 创建
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+
+
      *
      * @param BannerEditPost $post
      *
@@ -70,8 +70,8 @@ class BannerController extends Controller
 
     /**
      * 修改
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+
+
      *
      * @param int $id
      * @param BannerEditPost $post
@@ -97,8 +97,8 @@ class BannerController extends Controller
 
     /**
      * 删除
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+
+
      *
      * @param int $id
      *

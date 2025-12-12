@@ -26,8 +26,8 @@ class UserController extends Controller
 {
     /**
      * 前台登录
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-07
+
+
      *
      * @param Request $request
      *
@@ -68,8 +68,8 @@ class UserController extends Controller
 
     /**
      * 前台登录
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-07
+
+
      *
      * @param RegisterPost $post
      *
@@ -108,8 +108,8 @@ class UserController extends Controller
 
     /**
      * 修改个人资料
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-11
+
+
      *
      * @param EditProfilePost $post
      *
@@ -146,8 +146,8 @@ class UserController extends Controller
 
     /**
      * 修改密码
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-11
+
+
      *
      * @param EditPasswordPost $post
      *

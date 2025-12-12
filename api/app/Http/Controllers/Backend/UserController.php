@@ -22,8 +22,8 @@ class UserController extends Controller
 {
     /**
      * 列表
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
+
+
      *
      * @param UserListPost $post
      *
@@ -49,8 +49,8 @@ class UserController extends Controller
 
     /**
      * 修改
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+
+
      *
      * @param int $id
      * @param UserEditPost $post
@@ -76,8 +76,8 @@ class UserController extends Controller
 
     /**
      * 操作联盟客状态：审核通过、驳回、禁用、启用
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+
+
      *
      * @param int $id
      * @param Request $request

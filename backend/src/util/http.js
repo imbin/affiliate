@@ -8,8 +8,9 @@ var host = process.env.VUE_APP_API_HOST;
 if (host) {
     axios.defaults.baseURL = host;
 } else {
-    axios.defaults.baseURL = 'http://admin.edu.com';
+    axios.defaults.baseURL = 'http://admin.dev.com/api';
 }
+console.log("API Host: " + axios.defaults.baseURL);
 axios.defaults.timeout = 5000;
 axios.defaults.withCredentials = true;
 
@@ -23,8 +24,9 @@ axios.interceptors.request.use(
             'Accept': 'application/json'
         };
         if (token) {
-            config.headers["Authorization"] = "Bearer " + token
+            config.headers["Authorization"] = "Bearer " + encodeURIComponent(token);
         }
+        console.log('request', config);
         return config;
     },
     err => {
@@ -45,8 +47,8 @@ axios.interceptors.response.use(
         return response;
     },
     error => {
-        console.log(error.response);
-        return Promise.reject(error.response.data)
+        console.log(error);
+        return Promise.reject(error.response === undefined ? error : error.response.data)
     });
 
 export default axios;
@@ -62,6 +64,7 @@ export function apiHost() {
  * @returns {Promise}
  */
 export function fetch(url, params = {}) {
+    console.log('fetch url: ' + url, params);
     return new Promise((resolve, reject) => {
         axios.get(url, {
                 params: params
@@ -81,9 +84,10 @@ export function fetch(url, params = {}) {
  * @param data
  * @returns {Promise}
  */
-export function post(url, data = {}) {
+export function post(url, params = {}) {
+    console.log('post url: ' + url, params);
     return new Promise((resolve, reject) => {
-        axios.post(url, data)
+        axios.post(url, params)
             .then(response => {
                 resolve(response.data);
             }, err => {

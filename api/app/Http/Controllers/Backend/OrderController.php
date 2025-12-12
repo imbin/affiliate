@@ -25,8 +25,8 @@ class OrderController extends Controller
 {
     /**
      * 列表
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
+
+
      *
      * @param OrderListPost $post
      *
@@ -59,7 +59,7 @@ class OrderController extends Controller
                 } else {
                     $item->setAttribute( 'userInfo', null );
                 }
-                $item->canGrantTime = ($item->pay_time || $item->deliver_time) ? date('Y-m-d H:i:s', strtotime($item->pay_time) + ($item->audit_days * 86400)) : '';
+                $item->canGrantTime = ($item->pay_time || $item->deliver_time) ? date('Y-m-d H:i:s', strtotime($item->pay_time) + ($item->grant_days * 86400)) : '';
                 $item->statusText = OrderEnum::STATUS_TEXT_LIST[ $item->order_status ] ?? '';
                 $item->commissionStatusText = OrderEnum::COMMISSION_STATUS_TEXT_LIST[ $item->commission_status ] ?? '';
             }
@@ -74,8 +74,8 @@ class OrderController extends Controller
     }
     /**
      * 创建
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+
+
      *
      * @param OrderCreatePost $post
      *
@@ -101,8 +101,8 @@ class OrderController extends Controller
 
     /**
      * 修改
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+
+
      *
      * @param int $id
      * @param OrderEditPost $post
@@ -131,8 +131,8 @@ class OrderController extends Controller
 
     /**
      * 修改
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
+
+
      *
      * @param int $id
      *

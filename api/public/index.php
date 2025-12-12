@@ -34,16 +34,21 @@ require __DIR__.'/../vendor/autoload.php';
 | the responses back to the browser and delight our users.
 |
 */
-header('Access-Control-Allow-Headers:Origin, Content-Type, Authorization, Cookie, Accept');
-if (isset($_SERVER['HTTP_REFERER']) && stripos($_SERVER['HTTP_REFERER'], ':8081')) {
-    header('Access-Control-Allow-Origin: http://localhost:8081');
-} else {
-    header( 'Access-Control-Allow-Origin: http://localhost:8080' );
-}
+$env = env('APP_ENV', 'local');
 //header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods:POST,GET,HEAD,OPTIONS,PUT,DELETE,PATCH');
+header( 'Access-Control-Allow-Origin: http://localhost:8080' );
+//if ($env === 'local') {
+//    header( 'Access-Control-Allow-Origin: http://localhost:8080' );
+//} else {
+//    header('Access-Control-Allow-Origin: *');
+//}
+header('Access-Control-Allow-Headers:Origin, Content-Type, Authorization, Cookie, Accept');
+header('Access-Control-Allow-Methods: POST,GET,HEAD,OPTIONS,PUT,DELETE,PATCH');
 header('Access-Control-Allow-Credentials: true');
 
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    exit();
+}
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
