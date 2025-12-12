@@ -28,8 +28,6 @@ class UserService extends BaseService
 {
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param $id
      *
@@ -42,8 +40,6 @@ class UserService extends BaseService
     }
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param $id
      *
@@ -55,21 +51,6 @@ class UserService extends BaseService
         return $model->save();
     }
 
-    /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
-     *
-     * @param $id
-     *
-     * @return int
-     */
-    public function updateStatus($id, $val)
-    {
-        return UsersModel::query()->where('id', $id)->where('is_deleted', $val)->update([
-            'is_deleted' => CommonEnum::IS_DISABLED_YES
-        ]);
-    }
-
     public function editRow(UsersModel $model, UserEditPost $post)
     {
         $model->passwd = UtilHelper::hashPassword( $post->password);
@@ -77,8 +58,6 @@ class UserService extends BaseService
         return $model->save();
     }
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param int $id
      *
@@ -90,8 +69,6 @@ class UserService extends BaseService
     }
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-24
      *
      * @param array $id
      *
@@ -102,10 +79,8 @@ class UserService extends BaseService
         return UsersModel::singleton()->findListById( $id);
     }
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
      *
-     * @param BasePageListPost $post
+     * @param UserListPost $post
      * @param int $totalRows
      *
      * @return UsersModel[]
@@ -130,29 +105,32 @@ class UserService extends BaseService
         return $list;
     }
 
-    public function findByMobile($userName)
+    /**
+     * @param $mobile string
+     * @return UsersModel|null
+     */
+    public function findByMobile($mobile)
     {
-        if ( is_numeric( $userName ) && intval( $userName ) > 0 ) {
-            $model = UsersModel::singleton()->findByMobile( $userName );
-            if ( $model ) {
-                return $model;
-            }
-        }
-
-        return null;
+        return UsersModel::singleton()->findByMobile( $mobile );
     }
-    public function findByEmail($userName)
+
+    /**
+     * @param $email string
+     * @return UsersModel|null
+     */
+    public function findByEmail($email)
     {
-        $isEmail = filter_var($userName, FILTER_VALIDATE_EMAIL);
+        $isEmail = filter_var($email, FILTER_VALIDATE_EMAIL);
         if ($isEmail) {
-            $model = UsersModel::singleton()->findByEmail( $userName);
-            if ($model) {
-                return $model;
-            }
+            return UsersModel::singleton()->findByEmail( $email);
         }
         return null;
     }
 
+    /**
+     * @param $userName string
+     * @return UsersModel|null
+     */
     public function findByUserName($userName)
     {
         return UsersModel::singleton()->findByUserName( $userName);
@@ -166,8 +144,6 @@ class UserService extends BaseService
     }
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-16
      *
      * @param string $startTime
      * @param string $endTime
@@ -188,8 +164,6 @@ class UserService extends BaseService
 
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-25
      *
      * @param int $userId
      *
@@ -202,8 +176,6 @@ class UserService extends BaseService
 
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-26
      *
      * @param int $userId
      * @param $amount
@@ -211,6 +183,6 @@ class UserService extends BaseService
     public function balanceAdd(int $userId, $amount)
     {
         $sql = 'UPDATE '.UserBalanceModel::singleton()->getTable().' SET balance=balance+? WHERE user_id=?';
-        DB::update($sql, [ $amount, $userId ]);
+        return DB::update($sql, [ $amount, $userId ]);
     }
 }

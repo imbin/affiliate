@@ -36,9 +36,7 @@ class AdminUserModel extends Authenticatable implements JWTSubject
 
     /**
      * 获取验证规则
-     * Author: xxx@xx.com
-     * Date: 2019-02-25
-     *
+     * Author: xxx@xx.com     *
      * 'title' => 'required|max:255',
      * @return array
      */
@@ -75,8 +73,6 @@ class AdminUserModel extends Authenticatable implements JWTSubject
     }
     /**
      *
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-07
      *
      * @param $userName
      *

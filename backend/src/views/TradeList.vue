@@ -28,7 +28,7 @@
       width="180">
     </el-table-column>
     <el-table-column
-      prop="typeText"
+      prop="type_text"
       label="交易类型">
     </el-table-column>
     <el-table-column

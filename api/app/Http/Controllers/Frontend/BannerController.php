@@ -17,10 +17,15 @@ use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
+    private $bannerService;
+    public function __construct(BannerService $bannerService)
+    {
+        $this->bannerService = $bannerService;
+    }
     public function actionList(BasePageListPost $post)
     {
         $totalRows = 0;
-        $list = BannerService::singleton()->findListByPage( $post, $totalRows);
+        $list = $this->bannerService->findListByPage( $post, $totalRows);
         $ret = [];
         foreach ($list as $item) {
             $ret[] = [

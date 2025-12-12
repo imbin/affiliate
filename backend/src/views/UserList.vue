@@ -43,11 +43,11 @@
       label="注册日期">
     </el-table-column>
     <el-table-column
-      prop="statusText"
+      prop="status_text"
       label="审核状态">
     </el-table-column>
     <el-table-column
-      prop="disableText"
+      prop="disable_text"
       label="是否禁用">
     </el-table-column>
     <el-table-column
@@ -65,8 +65,8 @@
       <template slot-scope="scope">
         <el-button @click="showRowHandler(scope.row)" type="text" size="small">查看</el-button>
         <el-button @click="financeRow(scope.row)" type="text" size="small">收支</el-button>
-        <el-button type="text" size="small" v-if="scope.row.statusText=='待审核'" @click="statusRowHandler(scope.row, 'pass')">审核</el-button>
-        <el-button type="text" size="small" v-if="scope.row.statusText=='待审核'" @click="statusRowHandler(scope.row, 'reject')">驳回</el-button>
+        <el-button type="text" size="small" v-if="scope.row.status_text=='待审核'" @click="statusRowHandler(scope.row, 'pass')">审核</el-button>
+        <el-button type="text" size="small" v-if="scope.row.status_text=='待审核'" @click="statusRowHandler(scope.row, 'reject')">驳回</el-button>
         <el-button type="text" size="small" v-if="scope.row.is_disabled=='0'" @click="statusRowHandler(scope.row,'disable')">禁用</el-button>
         <el-button type="text" size="small" v-if="scope.row.is_disabled=='1'" @click="statusRowHandler(scope.row,'enable')">启用</el-button>
       </template>

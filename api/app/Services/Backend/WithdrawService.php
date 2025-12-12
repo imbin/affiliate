@@ -24,10 +24,12 @@ use Illuminate\Support\Facades\Log;
 
 class WithdrawService extends BaseService
 {
-
+    private $tradeService;
+    public function __construct(TradeService $tradeService)
+    {
+        $this->tradeService = $tradeService;
+    }
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param int $id
      *
@@ -39,8 +41,6 @@ class WithdrawService extends BaseService
     }
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-24
      *
      * @param string $sn
      *
@@ -51,8 +51,6 @@ class WithdrawService extends BaseService
         return FinanceWithdrawModel::singleton()->findBySn( $sn);
     }
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
      *
      * @param WithdrawListPost $post
      * @param int $totalRows
@@ -74,8 +72,6 @@ class WithdrawService extends BaseService
     }
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param $id
      *
@@ -91,21 +87,28 @@ class WithdrawService extends BaseService
 
             if ($status == CommonEnum::WITHDRAW_STATUS_COMPLETE) {
                 //已提现金额加数
-                $sql = sprintf( 'UPDATE %s SET frozen = frozen - ?, withdraw = withdraw + ? where user_id = ?', UserBalanceModel::singleton()->getTable() );
-                DB::update( $sql, [
+                $sql = sprintf( 'UPDATE %s SET frozen = frozen - ?, withdraw = withdraw + ? where user_id = ? and frozen >= ?', UserBalanceModel::singleton()->getTable() );
+                $rows = DB::update( $sql, [
                     $model->amount,
                     $model->amount,
-                    $model->user_id
+                    $model->user_id,
+                    $model->amount
                 ] );
-                //记录支出
-                TradeService::singleton()->createRow( $model->user_id, $model->sn, $model->amount, CommonEnum::TRADE_TYPE_EXPEND, '余额提现' );
+                if ($rows > 0) {
+                    //记录支出
+                    $this->tradeService->createRow( $model->user_id, $model->sn, $model->amount, CommonEnum::TRADE_TYPE_EXPEND, '余额提现' );
+                } else {
+                    throw new \Exception("冻结金额不足, 审核提现失败");
+                }
             }
             DB::commit();
             Log::info('审核提现单', ['sn' => $model->sn, 'status' => $status, 'remark' => $remark]);
             return true;
         } catch (\Throwable $throwable) {
-
+            DB::rollBack();
+            Log::info('审核提现单失败', ['sn' => $model->sn, 'status' => $status, 'remark' => $throwable->getMessage()]);
         }
+        return false;
     }
 
 }

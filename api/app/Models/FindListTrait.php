@@ -13,9 +13,7 @@ trait FindListTrait
 
     /**
      * 根据主键 ID 获取单个实例
-     * Author: xxx
-     * Date: 2019-03-02    *
-     * @param $id int
+     * Author: xxx     * @param $id int
      *
      * @return $this
      */
@@ -25,8 +23,6 @@ trait FindListTrait
     }
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-24
      *
      * @param array $id
      *
@@ -39,8 +35,6 @@ trait FindListTrait
 
     /**
      * 分页获取多个实例（Model数组）
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-03-02    *
      *
      * @param array $where
      * @param int $page
@@ -60,8 +54,6 @@ trait FindListTrait
     }
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-09
      * @return $this
      */
     public static function singleton()

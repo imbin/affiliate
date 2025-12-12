@@ -18,10 +18,13 @@ use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
+    private $orderService;
+    public function __construct(OrderService $orderService)
+    {
+        $this->orderService = $orderService;
+    }
     /**
      * 列表
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
      *
      * @param OrderListPost $post
      *
@@ -30,11 +33,11 @@ class OrderController extends Controller
     public function actionList(OrderListPost $post)
     {
         $totalRows = 0;
-        $list = OrderService::singleton()->findListByPage($post, $totalRows);
+        $list = $this->orderService->findListByPage($post, $totalRows);
 
         if (count($list)) {
             $idList = array_column($list, 'id');
-            $tmpList = OrderService::singleton()->findGoodsListById( $idList);
+            $tmpList = $this->orderService->findGoodsListById( $idList);
             $orderGoodsList = [];
             foreach ($tmpList as $goods) {
                 $orderGoodsList[$goods->order_id][] = $goods;

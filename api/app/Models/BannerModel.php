@@ -46,9 +46,7 @@ class BannerModel extends ValidateBaseModel
 
     /**
      * 获取验证规则
-     * Author: xxx
-     * Date: 2019-02-25
-     *
+     * Author: xxx     *
      * 'title' => 'required|max:255',
      * @return array
      */
@@ -75,12 +73,10 @@ class BannerModel extends ValidateBaseModel
     }
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-24
      *
      * @param int $sku
      *
-     * @return $this
+     * @return static
      */
     public function findBySku(int $sku)
     {

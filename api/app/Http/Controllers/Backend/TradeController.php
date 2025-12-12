@@ -22,10 +22,12 @@ use Illuminate\Http\Request;
 
 class TradeController extends Controller
 {
+    protected $tradeService;
+    public function __construct(TradeService $tradeService) {
+        $this->tradeService = $tradeService;
+    }
     /**
      * 列表
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
      *
      * @param TradeListPost $post
      *
@@ -34,10 +36,10 @@ class TradeController extends Controller
     public function actionList(TradeListPost $post)
     {
         $totalRows = 0;
-        $list = TradeService::singleton()->findListByPage($post, $totalRows);
+        $list = $this->tradeService->findListByPage($post, $totalRows);
 
         foreach ($list as $item) {
-            $item->setAttribute( 'typeText', CommonEnum::FINANCE_TRADE_TYPE_TEXT_LIST[$item->type]);
+            $item->setAttribute( 'type_text', CommonEnum::FINANCE_TRADE_TYPE_TEXT_LIST[$item->type]);
         }
 
         return $this->jsonSuccess([

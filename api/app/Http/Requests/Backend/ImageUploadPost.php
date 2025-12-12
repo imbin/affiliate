@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Backend;
 
-use App\Http\Requests\BasePageListPost;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
@@ -11,7 +10,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *
  * @property $image file
  */
-class ImageUploadPost extends BasePageListPost
+class ImageUploadPost extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.

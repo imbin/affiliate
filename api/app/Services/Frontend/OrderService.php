@@ -18,8 +18,6 @@ class OrderService extends BaseService
 {
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param int $id
      *
@@ -31,8 +29,6 @@ class OrderService extends BaseService
     }
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-24
      *
      * @param string $sn
      *
@@ -43,8 +39,6 @@ class OrderService extends BaseService
         return OrderInfoModel::singleton()->findBySn( $sn);
     }
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param int|array $id
      *
@@ -55,8 +49,6 @@ class OrderService extends BaseService
         return OrderGoodsModel::singleton()->findListByOrderId( $id);
     }
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
      *
      * @param OrderListPost $post
      * @param int $totalRows

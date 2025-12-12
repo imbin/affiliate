@@ -35,9 +35,7 @@ class OrderGoodsModel extends ValidateBaseModel
 //    protected $dateFormat = 'U';
 
     /**
-     * 获取验证规则
-     * Date: 2019-02-25
-     *
+     * 获取验证规则     *
      * 'title' => 'required|max:255',
      * @return array
      */
@@ -51,8 +49,6 @@ class OrderGoodsModel extends ValidateBaseModel
 
     /**
      * 获取指定订单的商品列表
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-24
      *
      * @param int $orderId
      *

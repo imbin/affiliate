@@ -24,10 +24,13 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
+    private $userService;
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
     /**
      * 前台登录
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-07
      *
      * @param Request $request
      *
@@ -38,7 +41,7 @@ class UserController extends Controller
         $userName = $request->post('userName');
         $password = $request->post('password');
 
-        $userModel = UserService::singleton()->login( $userName);
+        $userModel = $this->userService->login( $userName);
         if (empty($userModel) || (false === UtilHelper::validPassword( $password, $userModel->passwd))) {
             $code = CodeEnum::USER_INVALID_ACCOUNT;
             $msg = __('user.invalid_account');
@@ -68,8 +71,6 @@ class UserController extends Controller
 
     /**
      * 前台登录
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-07
      *
      * @param RegisterPost $post
      *
@@ -77,14 +78,14 @@ class UserController extends Controller
      */
     public function actionRegister(RegisterPost $post)
     {
-        $userModel = UserService::singleton()->findByUserName( $post->userName);
+        $userModel = $this->userService->findByUserName( $post->userName);
         if ($userModel) {
             //已存在
             $code = CodeEnum::USER_NAME_EXISTS;
             $msg = __('user.name_exists');
             return $this->jsonFail( $code, $msg);
         }
-        $ret = UserService::singleton()->registerNew( $post);
+        $ret = $this->userService->registerNew( $post);
         if (!$ret) {
             $code = CodeEnum::BASE_SERVER_ERROR;
             $msg = __('base.server_error');
@@ -108,8 +109,6 @@ class UserController extends Controller
 
     /**
      * 修改个人资料
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-11
      *
      * @param EditProfilePost $post
      *
@@ -121,21 +120,21 @@ class UserController extends Controller
         $user = Auth::user();
 
         if ($post->email && $post->email != $user->email) {
-            $exists = UserService::singleton()->findByEmail( $post->email );
+            $exists = $this->userService->findByEmail( $post->email );
             if ($exists) {
                 $code = CodeEnum::USER_EMAIL_EXISTS;
                 return $this->jsonFail( $code, __('user.email_exists'));
             }
         }
         if ($post->mobile && $post->mobile != $user->mobile) {
-            $exists = UserService::singleton()->findByMobile( $post->mobile );
+            $exists = $this->userService->findByMobile( $post->mobile );
             if ($exists) {
                 $code = CodeEnum::USER_EMAIL_EXISTS;
                 return $this->jsonFail( $code, __('user.mobile_exists'));
             }
         }
 
-        $ret = UserService::singleton()->editProfile( $post, $user);
+        $ret = $this->userService->editProfile( $post, $user);
         if (!$ret) {
             $code = CodeEnum::BASE_SERVER_ERROR;
             return $this->jsonFail( $code, __('base.server_error'));
@@ -146,8 +145,6 @@ class UserController extends Controller
 
     /**
      * 修改密码
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-11
      *
      * @param EditPasswordPost $post
      *
@@ -163,7 +160,7 @@ class UserController extends Controller
             return $this->jsonFail( $code, __('user.invalid_old_pwd'));
         }
 
-        $ret = UserService::singleton()->editPassword( $post, $user);
+        $ret = $this->userService->editPassword( $post, $user);
         if (! $ret) {
             $code = CodeEnum::BASE_SERVER_ERROR;
             return $this->jsonFail( $code, __('base.server_error'));

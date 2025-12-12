@@ -48,8 +48,6 @@ class UtilHelper
 
     /**
      * 验证密码
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-12
      *
      * @param string $hashedPwd
      * @param string $input
@@ -63,8 +61,6 @@ class UtilHelper
 
     /**
      * 生成动态缩略图
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-19
      *
      * @param string $picUrl
      *
@@ -77,8 +73,6 @@ class UtilHelper
 
     /**
      * 生成随机单号
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-25
      *
      * @param int $length
      *

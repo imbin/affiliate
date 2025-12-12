@@ -19,10 +19,13 @@ use App\Utils\UtilHelper;
 
 class BannerController extends Controller
 {
+    private $bannerService;
+    public function __construct(BannerService $bannerService)
+    {
+        $this->bannerService = $bannerService;
+    }
     /**
      * 列表
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
      *
      * @param BannerListPost $post
      *
@@ -31,11 +34,11 @@ class BannerController extends Controller
     public function actionList(BannerListPost $post)
     {
         $totalRows = 0;
-        $list = BannerService::singleton()->findListByPage($post, $totalRows);
+        $list = $this->bannerService->findListByPage($post, $totalRows);
 
         foreach ($list as $item) {
             $item->thumb_url = UtilHelper::thumbUrl( $item->pic_url);
-            $item->statusText = BannerEnum::STATUS_TEXT_LIST[$item->status] ?? '';
+            $item->status_text = BannerEnum::STATUS_TEXT_LIST[$item->status] ?? '';
         }
 
         return $this->jsonSuccess([
@@ -47,8 +50,6 @@ class BannerController extends Controller
     }
     /**
      * 创建
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param BannerEditPost $post
      *
@@ -56,11 +57,11 @@ class BannerController extends Controller
      */
     public function actionCreate(BannerEditPost $post)
     {
-        $exist = BannerService::singleton()->findBySku( $post->sku);
+        $exist = $this->bannerService->findBySku( $post->sku);
         if ($exist) {
             return $this->jsonFail( CodeEnum::BASE_SERVER_ERROR, 'sku已经存在, sku:'. $post->sku);
         }
-        $ret = BannerService::singleton()->createRow($post);
+        $ret = $this->bannerService->createRow($post);
         if (!($ret)) {
             return $this->jsonFail( CodeEnum::BASE_SERVER_ERROR, __('base.server_error'));
         }
@@ -70,8 +71,6 @@ class BannerController extends Controller
 
     /**
      * 修改
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param int $id
      * @param BannerEditPost $post
@@ -83,11 +82,11 @@ class BannerController extends Controller
         if (0 >= $id) {
             return $this->jsonFail( CodeEnum::BASE_INVALID_PARAMETER, '对象不存在');
         }
-        $model = BannerService::singleton()->findById( $id);
+        $model = $this->bannerService->findById( $id);
         if (!$model) {
             return $this->jsonFail( CodeEnum::BASE_INVALID_PARAMETER, '对象不存在');
         }
-        $ret = BannerService::singleton()->editRow($model, $post);
+        $ret = $this->bannerService->editRow($model, $post);
         if (!($ret)) {
             return $this->jsonFail( CodeEnum::BASE_SERVER_ERROR, __('base.server_error'));
         }
@@ -97,8 +96,6 @@ class BannerController extends Controller
 
     /**
      * 删除
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param int $id
      *
@@ -109,11 +106,11 @@ class BannerController extends Controller
         if ($id < 1) {
             return $this->jsonFail( CodeEnum::BASE_INVALID_PARAMETER, '参数错误');
         }
-        $model = BannerService::singleton()->findById( $id);
+        $model = $this->bannerService->findById( $id);
         if (!$model) {
             return $this->jsonFail( CodeEnum::BASE_INVALID_PARAMETER, '账号不存在');
         }
-        $ret = BannerService::singleton()->deleteRow($id);
+        $ret = $this->bannerService->deleteRow($id);
         if (!($ret)) {
             return $this->jsonFail( CodeEnum::BASE_SERVER_ERROR, __('base.server_error'));
         }

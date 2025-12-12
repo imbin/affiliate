@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\BannerRepository;
+use App\Repositories\Contracts\BannerRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // 绑定接口的实现类
+        $this->app->bind(
+            BannerRepositoryInterface::class,
+            BannerRepository::class  // 使用这个具体类
+        );
     }
 
     /**

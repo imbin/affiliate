@@ -17,8 +17,6 @@ class BannerService extends BaseService
 {
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param int $id
      *
@@ -29,8 +27,6 @@ class BannerService extends BaseService
         return BannerModel::singleton()->findById( $id);
     }
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
      *
      * @param BasePageListPost $post
      * @param int $totalRows

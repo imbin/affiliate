@@ -23,10 +23,14 @@ use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
+    protected $orderService;
+    protected $userService;
+    public function __construct(OrderService $orderService, UserService $userService) {
+        $this->orderService = $orderService;
+        $this->userService = $userService;
+    }
     /**
      * 列表
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
      *
      * @param OrderListPost $post
      *
@@ -35,17 +39,17 @@ class OrderController extends Controller
     public function actionList(OrderListPost $post)
     {
         $totalRows = 0;
-        $list = OrderService::singleton()->findListByPage($post, $totalRows);
+        $list = $this->orderService->findListByPage($post, $totalRows);
 
         if (count($list)) {
             $idList = array_column($list, 'id');
-            $tmpList = OrderService::singleton()->findGoodsListById( $idList);
+            $tmpList = $this->orderService->findGoodsListById( $idList);
             $orderGoodsList = [];
             foreach ($tmpList as $goods) {
                 $orderGoodsList[$goods->order_id][] = $goods;
             }
             $idList = array_unique( array_column($list, 'user_id'));
-            $tmpList = UserService::singleton()->findListById( $idList);
+            $tmpList = $this->userService->findListById( $idList);
             $orderUserList = array_column($tmpList, null, 'id');
             Log::info('goodsList2',  $orderGoodsList);
             foreach ( $list as $item ) {
@@ -74,8 +78,6 @@ class OrderController extends Controller
     }
     /**
      * 创建
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param OrderCreatePost $post
      *
@@ -83,15 +85,15 @@ class OrderController extends Controller
      */
     public function actionCreate(OrderCreatePost $post)
     {
-        $exists = OrderService::singleton()->findByOrderSn( $post->order_sn );
+        $exists = $this->orderService->findByOrderSn( $post->order_sn );
         if ($exists) {
             return $this->jsonFail( CodeEnum::BASE_SERVER_ERROR, '订单号已经存在:'.$post->order_sn);
         }
-        $user = UserService::singleton()->findById( $post->user_id );
+        $user = $this->userService->findById( $post->user_id );
         if (! $user) {
             return $this->jsonFail( CodeEnum::BASE_SERVER_ERROR, '用户不存在:'.$post->user_id);
         }
-        $ret = OrderService::singleton()->createRow($post);
+        $ret = $this->orderService->createRow($post);
         if (!($ret)) {
             return $this->jsonFail( CodeEnum::BASE_SERVER_ERROR, __('base.server_error'));
         }
@@ -101,8 +103,6 @@ class OrderController extends Controller
 
     /**
      * 修改
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param int $id
      * @param OrderEditPost $post
@@ -114,14 +114,14 @@ class OrderController extends Controller
         if (0 >= $id) {
             return $this->jsonFail( CodeEnum::BASE_INVALID_PARAMETER, '对象不存在');
         }
-        $model = OrderService::singleton()->findById( $id);
+        $model = $this->orderService->findById( $id);
         if (!$model) {
             return $this->jsonFail( CodeEnum::BASE_INVALID_PARAMETER, '对象不存在');
         }
         if ($model->commission_status == OrderEnum::COMMISSION_STATUS_GRANTED) {
             return $this->jsonFail( CodeEnum::BASE_INVALID_PARAMETER, '订单已发佣金，不能再更改订单信息');
         }
-        $ret = OrderService::singleton()->editRow($model, $post);
+        $ret = $this->orderService->editRow($model, $post);
         if (!($ret)) {
             return $this->jsonFail( CodeEnum::BASE_SERVER_ERROR, __('base.server_error'));
         }
@@ -131,8 +131,6 @@ class OrderController extends Controller
 
     /**
      * 修改
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param int $id
      *
@@ -143,11 +141,11 @@ class OrderController extends Controller
         if (0 >= $id) {
             return $this->jsonFail( CodeEnum::BASE_INVALID_PARAMETER, '对象不存在');
         }
-        $model = OrderService::singleton()->findById( $id);
+        $model = $this->orderService->findById( $id);
         if (!$model) {
             return $this->jsonFail( CodeEnum::BASE_INVALID_PARAMETER, '对象不存在');
         }
-        $ret = OrderService::singleton()->grantRow( $model);
+        $ret = $this->orderService->grantRow( $model);
         if (!($ret)) {
             return $this->jsonFail( CodeEnum::BASE_SERVER_ERROR, __('base.server_error'));
         }

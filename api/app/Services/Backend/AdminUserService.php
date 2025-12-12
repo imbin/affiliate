@@ -21,8 +21,6 @@ use App\Utils\UtilHelper;
 class AdminUserService extends BaseService
 {
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
      *
      * @param BasePageListPost $post
      * @param int $totalRows
@@ -49,8 +47,6 @@ class AdminUserService extends BaseService
     }
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param $id
      *
@@ -63,8 +59,6 @@ class AdminUserService extends BaseService
 
     /**
      *
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-07
      *
      * @param $userName
      *
@@ -80,8 +74,6 @@ class AdminUserService extends BaseService
     }
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param int $id
      *

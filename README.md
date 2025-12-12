@@ -21,20 +21,25 @@ backend   后台管理界面，演示部署域名: admin.dev.com
 # 最佳实践
 
 - 本系统的意义在于演示PHP Laravel最佳实践
+- Controller和Service/Repository充分利用现代框架的依赖倒置原则, 在构造函数中创建依赖的下游分层, 放弃singleton的静态单例模式
+- 因业务操作比较简单，没有复杂的Service间调用，Repository分层只用了Banner模块演示
 
 ## 使用Controller做为入口接收前端提交参数
 
 - app/Http/Controllers/Backend/BannerController.php
-- 在Controller中敲 $item->pic_url 都是带IDE智能提示的
+- 在Controller中敲 $item->pic_url 在PhpStorm中都是带IDE智能提示的
 
 ```php
 use App\Http\Requests\Backend\BannerListPost;
 class BannerController extends Controller
 {
+    private $bannerService;
+    public function __construct(BannerService $bannerService)
+    {
+        $this->bannerService = $bannerService;
+    }
     /**
      * 列表
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
      *
      * @param BannerListPost $post
      *
@@ -43,7 +48,7 @@ class BannerController extends Controller
     public function actionList(BannerListPost $post)
     {
         $totalRows = 0;
-        $list = BannerService::singleton()->findListByPage($post, $totalRows);
+        $list = $this->bannerService->findListByPage($post, $totalRows);
 
         foreach ($list as $item) {
             $item->thumb_url = UtilHelper::thumbUrl( $item->pic_url);
@@ -67,8 +72,8 @@ class BannerController extends Controller
  * Class BannerListPost
  * @package App\Http\Requests
  *
- * @property $title string
- * @property $status int
+ * @property $title string 搜索关键词
+ * @property $status int 状态过滤
  */
 class BannerListPost extends BasePageListPost
 {
@@ -95,18 +100,46 @@ class BannerListPost extends BasePageListPost
 }
 ```
 
-## 演示Service操作MySQL
+## 演示Service操作MySQL, Repository模式演示
 
-- 在Service中敲$post->title都是带IDE智能提示的
+- 在Repository中敲$post->title都是带IDE智能提示的
 - 在Service中标记@return BannerModel[]，可在调用处使用IDE智能提示Model字段名
 
 ```php
 class BannerService extends BaseService
 {
+    private $bannerRepository;
+    public function __construct(BannerRepositoryInterface $bannerRepository)
+    {
+        $this->bannerRepository = $bannerRepository;
+    }
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
      *
+     * @param BannerListPost $post
+     * @param int $totalRows
+     *
+     * @return BannerModel[]
+     */
+    public function findListByPage(BannerListPost $post, int &$totalRows)
+    {
+        return $this->bannerRepository->findListByPage( $post, $totalRows);
+    }
+}
+```
+
+## 演示Repository操作Model
+```php
+
+class BannerRepository implements BannerRepositoryInterface
+{
+    protected $model;
+
+    public function __construct(BannerModel $model)
+    {
+        $this->model = $model;
+    }
+    
+    /**
      * @param BannerListPost $post
      * @param int $totalRows
      *
@@ -121,7 +154,7 @@ class BannerService extends BaseService
         if ($post->status) {
             $where[] = ['status', '=', $post->status];
         }
-        $list = BannerModel::singleton()->findListByPage( $where, $post->page, $post->perPage, $totalRows);
+        $list = $this->model->findListByPage( $where, $post->page, $post->perPage, $totalRows);
 
         return $list;
     }

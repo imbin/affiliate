@@ -75,9 +75,7 @@ class UsersModel extends Authenticatable implements JWTSubject
 
     /**
      * 获取验证规则
-     * Author: xxx
-     * Date: 2019-02-25
-     *
+     * Author: xxx     *
      * 'title' => 'required|max:255',
      * @return array
      */
@@ -91,8 +89,6 @@ class UsersModel extends Authenticatable implements JWTSubject
 
     /**
      *
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-07
      *
      * @param $userName
      *
@@ -105,8 +101,6 @@ class UsersModel extends Authenticatable implements JWTSubject
 
     /**
      *
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-07
      *
      * @param $mobile
      *
@@ -119,8 +113,6 @@ class UsersModel extends Authenticatable implements JWTSubject
 
     /**
      *
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-07
      *
      * @param $email
      *
@@ -131,8 +123,6 @@ class UsersModel extends Authenticatable implements JWTSubject
         return static::query()->where(['email'=>$email])->where(['is_disabled'=>CommonEnum::IS_DISABLED_NO])->orderByDesc( 'id')->first();
     }
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-16
      * @return int
      */
     public function incrementLoginCount()
@@ -142,8 +132,6 @@ class UsersModel extends Authenticatable implements JWTSubject
 
     /**
      * 是否通过审核
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-07
      * @return bool
      */
     public function isPassed()
@@ -153,8 +141,6 @@ class UsersModel extends Authenticatable implements JWTSubject
 
     /**
      * 是否待审核
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-07
      * @return bool
      */
     public function isPending()

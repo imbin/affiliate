@@ -48,7 +48,7 @@
       label="SKU">
     </el-table-column>
     <el-table-column
-      prop="statusText"
+      prop="row.status_text"
       label="状态">
     </el-table-column>
     <el-table-column
@@ -64,8 +64,8 @@
       label="操作"
       width="100">
       <template slot-scope="scope">
-        <el-button type="text" size="small" v-if="scope.row.statusText=='待审核'" @click="disableRowHandler(scope.row)">上架</el-button>
-        <el-button type="text" size="small" v-if="scope.row.statusText=='审核通过'" @click="disableRowHandler(scope.row)">下架</el-button>
+        <el-button type="text" size="small" v-if="scope.row.row.status_text=='待审核'" @click="disableRowHandler(scope.row)">上架</el-button>
+        <el-button type="text" size="small" v-if="scope.row.row.status_text=='审核通过'" @click="disableRowHandler(scope.row)">下架</el-button>
         <el-button type="text" size="small" @click="editRowHandler(scope.row)">编辑</el-button>
       </template>
     </el-table-column>

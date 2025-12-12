@@ -20,10 +20,13 @@ use Illuminate\Http\Request;
 
 class WithdrawController extends Controller
 {
+    private $withdrawService;
+    public function __construct(WithdrawService $withdrawService)
+    {
+        $this->withdrawService = $withdrawService;
+    }
     /**
      * 列表
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
      *
      * @param WithdrawListPost $post
      *
@@ -32,7 +35,7 @@ class WithdrawController extends Controller
     public function actionList(WithdrawListPost $post)
     {
         $totalRows = 0;
-        $list = WithdrawService::singleton()->findListByPage($post, $totalRows);
+        $list = $this->withdrawService->findListByPage($post, $totalRows);
 
         foreach ($list as $item) {
             $item->setAttribute( 'statusText', CommonEnum::WITHDRAW_STATUS_TEXT_LIST[$item->status]);
@@ -49,8 +52,6 @@ class WithdrawController extends Controller
 
     /**
      * 修改
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param int $id
      * @param UserEditPost $post
@@ -62,11 +63,11 @@ class WithdrawController extends Controller
         if (0 >= $id) {
             return $this->jsonFail( CodeEnum::BASE_INVALID_PARAMETER, '账号不存在');
         }
-        $model = WithdrawService::singleton()->findById( $id);
+        $model = $this->withdrawService->findById( $id);
         if (!$model) {
             return $this->jsonFail( CodeEnum::BASE_INVALID_PARAMETER, '账号不存在');
         }
-        $ret = WithdrawService::singleton()->editRow($model, $post);
+        $ret = $this->withdrawService->editRow($model, $post);
         if (!($ret)) {
             return $this->jsonFail( CodeEnum::BASE_SERVER_ERROR, __('base.server_error'));
         }
@@ -76,26 +77,24 @@ class WithdrawController extends Controller
 
     /**
      * 操作提现状态：审核通过、驳回
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param int $id
      * @param Request $request
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function actionUpdateStatus(int $id, Request $request)
+    public function actionUpdateStatus(int $id)
     {
-        $action = $request->input('action');
+        $action = request()->input('action');
         if ($id < 1 || empty($action)) {
             return $this->jsonFail( CodeEnum::BASE_INVALID_PARAMETER, '参数错误');
         }
-        $model = WithdrawService::singleton()->findById( $id);
+        $model = $this->withdrawService->findById( $id);
         if (!$model) {
             return $this->jsonFail( CodeEnum::BASE_INVALID_PARAMETER, '提现单不存在');
         }
 
-        $remark = $request->input('remark', '');
+        $remark = request()->input('remark', '');
         switch ($action) {
             case 'pass'://审核通过
                 $status = CommonEnum::WITHDRAW_STATUS_COMPLETE;
@@ -111,7 +110,7 @@ class WithdrawController extends Controller
             return $this->jsonFail( CodeEnum::BASE_INVALID_PARAMETER, '提现单号状态已经变化, 请刷新');
         }
 
-        $ret = WithdrawService::singleton()->updateStatusRow($model, $status, $remark);
+        $ret = $this->withdrawService->updateStatusRow($model, $status, $remark);
         if (!($ret)) {
             return $this->jsonFail( CodeEnum::BASE_SERVER_ERROR, __('base.server_error'));
         }

@@ -20,10 +20,13 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    protected $userService;
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
     /**
      * 列表
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
      *
      * @param UserListPost $post
      *
@@ -32,11 +35,11 @@ class UserController extends Controller
     public function actionList(UserListPost $post)
     {
         $totalRows = 0;
-        $list = UserService::singleton()->findListByPage($post, $totalRows);
+        $list = $this->userService->findListByPage($post, $totalRows);
 
         foreach ($list as $item) {
-            $item->statusText = UserEnum::STATUS_TEXT_LIST[$item->status] ?? '';
-            $item->disableText = CommonEnum::DISABLED_TEXT_LIST[$item->is_disabled] ?? '';
+            $item->status_text = UserEnum::STATUS_TEXT_LIST[$item->status] ?? '';
+            $item->disable_text = CommonEnum::DISABLED_TEXT_LIST[$item->is_disabled] ?? '';
         }
 
         return $this->jsonSuccess([
@@ -49,8 +52,6 @@ class UserController extends Controller
 
     /**
      * 修改
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param int $id
      * @param UserEditPost $post
@@ -62,11 +63,11 @@ class UserController extends Controller
         if (0 >= $id) {
             return $this->jsonFail( CodeEnum::BASE_INVALID_PARAMETER, '账号不存在');
         }
-        $model = UserService::singleton()->findById( $id);
+        $model = $this->userService->findById( $id);
         if (!$model) {
             return $this->jsonFail( CodeEnum::BASE_INVALID_PARAMETER, '账号不存在');
         }
-        $ret = UserService::singleton()->editRow($model, $post);
+        $ret = $this->userService->editRow($model, $post);
         if (!($ret)) {
             return $this->jsonFail( CodeEnum::BASE_SERVER_ERROR, __('base.server_error'));
         }
@@ -76,8 +77,6 @@ class UserController extends Controller
 
     /**
      * 操作联盟客状态：审核通过、驳回、禁用、启用
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param int $id
      * @param Request $request
@@ -90,23 +89,23 @@ class UserController extends Controller
         if ($id < 1 || empty($action)) {
             return $this->jsonFail( CodeEnum::BASE_INVALID_PARAMETER, '参数错误');
         }
-        $model = UserService::singleton()->findById( $id);
+        $model = $this->userService->findById( $id);
         if (!$model) {
             return $this->jsonFail( CodeEnum::BASE_INVALID_PARAMETER, '账号不存在');
         }
 
         switch ($action) {
             case 'enable'://启用
-                $ret = UserService::singleton()->disableOrEnableRow($model, CommonEnum::IS_DISABLED_NO);
+                $ret = $this->userService->disableOrEnableRow($model, CommonEnum::IS_DISABLED_NO);
                 break;
             case 'disable'://禁用
-                $ret = UserService::singleton()->disableOrEnableRow($model, CommonEnum::IS_DISABLED_YES);
+                $ret = $this->userService->disableOrEnableRow($model, CommonEnum::IS_DISABLED_YES);
                 break;
             case 'pass'://审核通过
-                $ret = UserService::singleton()->updateStatusRow($model, UserEnum::STATUS_PASS);
+                $ret = $this->userService->updateStatusRow($model, UserEnum::STATUS_PASS);
                 break;
             case 'reject'://驳回
-                $ret = UserService::singleton()->updateStatusRow($model, UserEnum::STATUS_REJECT);
+                $ret = $this->userService->updateStatusRow($model, UserEnum::STATUS_REJECT);
                 break;
             default:
                 $ret = false;

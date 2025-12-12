@@ -22,10 +22,13 @@ use Illuminate\Support\Facades\Auth;
 
 class FinanceController extends Controller
 {
+    private $financeService;
+    public function __construct(FinanceService $financeService)
+    {
+        $this->financeService = $financeService;
+    }
     /**
      * 收到明细列表
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
      *
      * @param BasePageListPost $post
      *
@@ -35,7 +38,7 @@ class FinanceController extends Controller
     {
         $userId = Auth::id();
         $totalRows = 0;
-        $list = FinanceService::singleton()->findTradeListByPage($userId, $post, $totalRows);
+        $list = $this->financeService->findTradeListByPage($userId, $post, $totalRows);
 
         if (count($list)) {
             foreach ( $list as $item ) {
@@ -53,15 +56,13 @@ class FinanceController extends Controller
 
     /**
      * 查余额
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-24
      */
     public function actionBalance()
     {
         $userId = Auth::id();
-        $balanceModel = FinanceService::singleton()->findBalance( $userId);
+        $balanceModel = $this->financeService->findBalance( $userId);
 
-        $balance = $balanceModel ? $balanceModel->computeBalance() : 0;
+        $balance = $balanceModel ? $balanceModel->balance: 0;
 
         return $this->jsonSuccess([
             //总余额（含冻结）
@@ -75,19 +76,17 @@ class FinanceController extends Controller
 
     /**
      * 提现申请
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-25
      */
     public function actionWithdrawCreate(WithdrawCreatePost $post)
     {
         $userId = Auth::id();
 
-        $balanceModel = FinanceService::singleton()->findBalance( $userId);
+        $balanceModel = $this->financeService->findBalance( $userId);
         if (bccomp($balanceModel->balance, $post->amount) < 0) {
             //余额不足
             return $this->jsonFail( CodeEnum::FINANCE_NOT_ENOUGH_BALANCE, '余额不足');
         }
-        $ret = FinanceService::singleton()->createWithdraw( $userId, $post);
+        $ret = $this->financeService->createWithdraw( $userId, $post);
         if (!$ret) {
             return $this->jsonFail( CodeEnum::BASE_SERVER_ERROR, __('base.server_error'));
         }
@@ -96,8 +95,6 @@ class FinanceController extends Controller
 
     /**
      * 提现列表
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-25
      *
      * @param BasePageListPost $post
      * @return JsonResponse
@@ -106,7 +103,7 @@ class FinanceController extends Controller
     {
         $userId = Auth::id();
         $totalRows = 0;
-        $list = FinanceService::singleton()->findWithdrawListByUser( $userId, $post, $totalRows);
+        $list = $this->financeService->findWithdrawListByUser( $userId, $post, $totalRows);
         if (count($list)) {
             foreach ($list as $item) {
                 $item->setAttribute( 'statusText', CommonEnum::WITHDRAW_STATUS_TEXT_LIST[$item->status]);

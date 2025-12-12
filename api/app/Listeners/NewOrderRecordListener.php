@@ -20,14 +20,17 @@ use Illuminate\Support\Facades\Log;
  */
 class NewOrderRecordListener
 {
+    private $orderService;
+    private $bannerService;
     /**
      * Create the event listener.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(OrderService $orderService, BannerService $bannerService)
     {
-        //
+        $this->orderService = $orderService;
+        $this->bannerService = $bannerService;
     }
 
     /**
@@ -39,18 +42,18 @@ class NewOrderRecordListener
      */
     public function handle(NewOrderRecordEvent $event)
     {
-        $orderModel = OrderService::singleton()->findById( $event->orderId );
+        $orderModel = $this->orderService->findById( $event->orderId );
         if (! $orderModel) {
             throw new \Exception('订单不存在, orderId='. $event->orderId, CodeEnum::BASE_SERVER_ERROR);
         }
 
-        $orderGoodsList = OrderService::singleton()->findGoodsListById( $event->orderId);
+        $orderGoodsList = $this->orderService->findGoodsListById( $event->orderId);
         foreach ($orderGoodsList as $goodsItem) {
             //小计
             $goodsItem->subtotal = bcmul($goodsItem->sku_price, $goodsItem->sku_quantity, 2);
             //默认 1%
             $goodsItem->sku_commission = bcmul(0.01, $goodsItem->subtotal, 2);
-            $banner = BannerService::singleton()->findBySku( $goodsItem->sku );
+            $banner = $this->bannerService->findBySku( $goodsItem->sku );
             if ($banner) {
                 //存在
                 if ($banner->isReturnAmount()) {

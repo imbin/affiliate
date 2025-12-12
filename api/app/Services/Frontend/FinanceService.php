@@ -26,8 +26,6 @@ class FinanceService extends BaseService
 {
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param int $id
      *
@@ -39,8 +37,6 @@ class FinanceService extends BaseService
     }
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-24
      *
      * @param string $sn
      *
@@ -51,8 +47,6 @@ class FinanceService extends BaseService
         return FinanceTradeModel::singleton()->findBySn( $sn);
     }
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
      *
      * @param int $userId
      * @param BasePageListPost $post
@@ -70,8 +64,6 @@ class FinanceService extends BaseService
     }
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-25
      *
      * @param int $userId
      *
@@ -84,8 +76,6 @@ class FinanceService extends BaseService
 
     /**
      * 提现列表
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-25
      *
      * @param int $userId
      * @param BasePageListPost $post
@@ -104,8 +94,6 @@ class FinanceService extends BaseService
 
     /**
      * 创建一个提现
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-25
      *
      * @param int $userId
      * @param WithdrawCreatePost $post

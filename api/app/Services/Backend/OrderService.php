@@ -16,16 +16,21 @@ use App\Events\NewOrderRecordEvent;
 use App\Http\Requests\Backend\OrderCreatePost;
 use App\Http\Requests\Backend\OrderEditPost;
 use App\Http\Requests\Backend\OrderListPost;
-use App\Http\Requests\BasePageListPost;
 use App\Models\OrderGoodsModel;
 use App\Models\OrderInfoModel;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
 
 class OrderService extends BaseService
 {
+    private $tradeService;
+    private $userService;
+    public function __construct(TradeService $tradeService, UserService $userService)
+    {
+        $this->tradeService = $tradeService;
+        $this->userService = $userService;
+    }
     public function createRow(OrderCreatePost $post)
     {
         DB::beginTransaction();
@@ -86,8 +91,6 @@ class OrderService extends BaseService
 
     /**
      * 发放一笔订单佣金
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-26
      *
      * @param OrderInfoModel $model
      *
@@ -97,29 +100,36 @@ class OrderService extends BaseService
     {
         DB::beginTransaction();
         try {
-            $rows = OrderInfoModel::query()->where( 'id', $model->id )->where( 'commission_status', OrderEnum::COMMISSION_STATUS_PENDING )->update( [
+            $rows = OrderInfoModel::query()
+                ->where( 'id', $model->id )
+                ->where( 'commission_status', OrderEnum::COMMISSION_STATUS_PENDING )
+                ->update( [
                 'commission_status' => OrderEnum::COMMISSION_STATUS_GRANTED
             ] );
             if ($rows == 0) {
-                throw new \Exception('更改佣金状态，没有记录被更新', 1);
+                throw new \Exception('更改佣金发放状态失败，没有记录被更新，请检查订单佣金状态', 1);
             }
             //增加用户一笔收入
-            TradeService::singleton()->createRow( $model->user_id, $model->order_sn, $model->commission, CommonEnum::TRADE_TYPE_INCOME, '订单佣金');
+            $insert = $this->tradeService->createRow( $model->user_id, $model->order_sn, $model->commission, CommonEnum::TRADE_TYPE_INCOME, '订单佣金');
+
+            if (! $insert) {
+                throw new \Exception('写入佣金发放记录失败', 2);
+            }
             //增加余额
-            UserService::singleton()->balanceAdd( $model->user_id, $model->commission);
+            $rows = $this->userService->balanceAdd( $model->user_id, $model->commission);
+            if ($rows == 0) {
+                throw new \Exception('佣金发放时写入增加余额失败', 1);
+            }
             DB::commit();
-            Log::info( '发放订单佣金', ['orderSn' => $model->order_sn, 'userId' => $model->user_id]);
+            Log::info( '发放订单佣金', ['orderSn' => $model->order_sn, 'userId' => $model->user_id, 'commission' => $model->commission]);
             return true;
         } catch (\Throwable $throwable) {
             DB::rollBack();
-            Log::error( $throwable->getMessage());
-            Log::error( $throwable->getTraceAsString());
+            Log::error( $throwable->getMessage(), ['code' => $throwable->getCode(), 'orderSn' => $model->order_sn, 'userId' => $model->user_id]);
             return false;
         }
     }
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param int $id
      *
@@ -131,8 +141,6 @@ class OrderService extends BaseService
     }
 
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-24
      *
      * @param string $sn
      *
@@ -143,8 +151,6 @@ class OrderService extends BaseService
         return OrderInfoModel::singleton()->findBySn( $sn);
     }
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-14
      *
      * @param int|array $id
      *
@@ -155,8 +161,6 @@ class OrderService extends BaseService
         return OrderGoodsModel::singleton()->findListByOrderId( $id);
     }
     /**
-     * @author: tobinzhao@gmail.com
-     * Date: 2019-11-13
      *
      * @param OrderListPost $post
      * @param int $totalRows

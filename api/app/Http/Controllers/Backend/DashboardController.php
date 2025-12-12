@@ -12,6 +12,10 @@ use App\Services\Backend\UserService;
 
 class DashboardController extends Controller
 {
+    private $userService;
+    public function __construct(UserService $userService) {
+        $this->userService = $userService;
+    }
     public function actionInfo()
     {
         /*
@@ -29,20 +33,20 @@ class DashboardController extends Controller
         $yesterday = strtotime('-1 day');
         $startTime = date('Y-m-d', $yesterday).' 00:00:00';
         $endTime = date('Y-m-d', $yesterday).' 23:59:59';
-        $yesterdayUsers = UserService::singleton()->countByRegTime( $startTime, $endTime);
+        $yesterdayUsers = $this->userService->countByRegTime( $startTime, $endTime);
 
         //总数，截止昨日
-        $totalUsers = UserService::singleton()->countByRegTime( '', $endTime);
+        $totalUsers = $this->userService->countByRegTime( '', $endTime);
 
         //今日
         $startTime = date('Y-m-d').' 00:00:00';
         $endTime = date('Y-m-d').' 23:59:59';
-        $todayUsers = UserService::singleton()->countByRegTime( $startTime, $endTime);
+        $todayUsers = $this->userService->countByRegTime( $startTime, $endTime);
 
         //本月新增
         $startTime = date('Y-m-1').' 00:00:00';
         $endTime = date('Y-m-d', $yesterday).' 23:59:59';
-        $monthUsers = UserService::singleton()->countByRegTime( $startTime, $endTime);
+        $monthUsers = $this->userService->countByRegTime( $startTime, $endTime);
 
 
         return $this->jsonSuccess([
