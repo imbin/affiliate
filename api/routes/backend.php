@@ -40,7 +40,7 @@ Route::group(['prefix' => '/api', 'domain' => env('HOST_ADMIN'), 'middleware' =>
     Route::put('users/edit/{id}', 'UserController@actionEdit')->where(['id' => '[0-9]+']);
 
     //后台首页
-    Route::get('dashboard', 'DashboardController@actionInfo');
+    Route::get('dashboard', 'DashboardController@actionIndex');
 
     //素材Banner(CRUD)
     Route::get('banners', 'BannerController@actionList');
