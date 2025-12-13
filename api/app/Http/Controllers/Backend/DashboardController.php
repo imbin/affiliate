@@ -16,7 +16,7 @@ class DashboardController extends Controller
     public function __construct(UserService $userService) {
         $this->userService = $userService;
     }
-    public function actionInfo()
+    public function actionIndex()
     {
         /*
 昨日新增注册联盟客：10个
