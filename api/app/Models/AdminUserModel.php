@@ -19,6 +19,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $user_name 登录名
  * @property string $passwd 密码
  * @property string $real_name 姓名
+ * @property string $is_disabled 是否禁用:0=否,1=是
+ * @property int $login_count 登录次数
+ * @property string $last_login_time 最近登录日期
  * @property string $create_time 创建日期
  * @property string $update_time 更新日期
  */

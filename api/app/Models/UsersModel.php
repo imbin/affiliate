@@ -29,7 +29,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property string $nick_name 昵称
  * @property int $gender 性别:0=未设置，1=男，2=女
  * @property string $birthday 出生年月
- * @property int $login_count
+ * @property int $login_count 登录次数
  * @property string $last_login_time 最近登录日期
  * @property int $status 状态:1=待审核、2=审核通过、3=驳回
  * @property string $track_code 用于追踪订单的追踪码

@@ -14,12 +14,13 @@ use Illuminate\Support\Facades\Route;
 //不检查登录的
 Route::group(['prefix' => '/api', 'domain' => env('HOST_ADMIN'), 'namespace' => 'Backend'], function () {
     Route::post('login', 'AdminUserController@actionLogin');
-//上传图片
-    Route::post('upload/img', 'UploadController@actionImage');
 
 });
 //管理员
 Route::group(['prefix' => '/api', 'domain' => env('HOST_ADMIN'), 'middleware' => 'jwt:backend', 'namespace' => 'Backend'], function () {
+    //上传图片
+    Route::post('upload/img', 'UploadController@actionImage');
+
     //管理员
     Route::post('admin', 'AdminUserController@actionCreate');
     //修改自己的资料
@@ -39,7 +40,7 @@ Route::group(['prefix' => '/api', 'domain' => env('HOST_ADMIN'), 'middleware' =>
     Route::put('users/edit/{id}', 'UserController@actionEdit')->where(['id' => '[0-9]+']);
 
     //后台首页
-    Route::get('dashboard', 'DashboardController@actionIndex');
+    Route::get('dashboard', 'DashboardController@actionInfo');
 
     //素材Banner(CRUD)
     Route::get('banners', 'BannerController@actionList');

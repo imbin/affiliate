@@ -12,14 +12,14 @@ namespace App\Models;
  * @property int $id
  * @property int $user_id 所属用户
  * @property string $order_sn 订单号
- * @property string $order_amount 订单金额（不含运费）
+ * @property float $order_amount 订单金额（不含运费）
+ * @property string $commission 订单佣金
  * @property int $order_status 订单状态:1=未付款、2=已取消、3=已付款、4=已发货
  * @property string $order_time 下单日期
  * @property string $pay_time 支付日期
  * @property string $deliver_time 发货日期
  * @property int $commission_status 佣金状态:1=未发放、2=已发放、3=不发放
- * @property string $commission 订单佣金
- * @property int $audit_days 佣金发放周期,默认30天
+ * @property int $grant_days 佣金发放周期,默认30天
  * @property string $create_time 创建日期
  * @property string $update_time 更新日期
  */

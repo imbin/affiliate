@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
  * @property int $id
  * @property string $sn 提现号
  * @property int $user_id 所属用户
- * @property string $amount 提现金额
+ * @property float $amount 提现金额
  * @property int $status 提现状态:1=未审核、2=驳回、3=提现成功
  * @property int $way 提现方式：1=银行卡，2=支付宝
  * @property string $card 银行卡号或支付宝账号

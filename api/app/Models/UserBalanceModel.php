@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\DB;
  *
  * @property int $id
  * @property int $user_id 所属用户
- * @property string $balance 余额（可提现金额）
- * @property string $frozen 冻结金额（提现中或其他冻结）
- * @property string $withdraw 已提现金额
+ * @property float $balance 余额（可提现金额）
+ * @property float $frozen 冻结金额（提现中）
+ * @property float $withdraw 已提现金额
  * @property string $create_time 创建日期
  * @property string $update_time 更新日期
  */
