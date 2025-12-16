@@ -11,11 +11,11 @@ namespace App\Enum;
 
 class CommonEnum
 {
-    const IS_DISABLED_YES = 1;
-    const IS_DISABLED_NO = 0;
-    const DISABLED_TEXT_LIST = [
-        self::IS_DISABLED_NO => '否',
-        self::IS_DISABLED_YES => '是',
+    const IS_DELETED_YES = 1;
+    const IS_DELETED_NO = 0;
+    const DELETED_TEXT_LIST = [
+        self::IS_DELETED_NO => '否',
+        self::IS_DELETED_YES => '是',
     ];
 
     const TRADE_TYPE_INCOME = 1;//收入

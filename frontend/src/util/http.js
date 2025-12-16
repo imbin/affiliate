@@ -8,7 +8,7 @@ var host = process.env.VUE_APP_API_HOST;
 if (host) {
     axios.defaults.baseURL = host;
 } else {
-    axios.defaults.baseURL = 'http://api.edu.com';
+    axios.defaults.baseURL = 'http://www.dev.com/api';
 }
 axios.defaults.timeout = 5000;
 axios.defaults.withCredentials = true;

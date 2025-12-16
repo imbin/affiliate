@@ -35,7 +35,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property string $track_code 用于追踪订单的追踪码
  * @property string $create_time 创建日期
  * @property string $update_time 更新日期
- * @property string $is_disabled 是否禁用:0=否,1=是
+ * @property string $is_deleted 是否禁用:0=否,1=是
  */
 class UsersModel extends Authenticatable implements JWTSubject
 {
@@ -96,7 +96,7 @@ class UsersModel extends Authenticatable implements JWTSubject
      */
     public function findByUserName($userName)
     {
-        return static::query()->where(['user_name'=>$userName])->where(['is_disabled'=>CommonEnum::IS_DISABLED_NO])->orderByDesc( 'id')->first();
+        return static::query()->where(['user_name'=>$userName])->where(['is_deleted'=>CommonEnum::IS_DELETED_NO])->orderByDesc( 'id')->first();
     }
 
     /**
@@ -108,7 +108,7 @@ class UsersModel extends Authenticatable implements JWTSubject
      */
     public function findByMobile($mobile)
     {
-        return static::query()->where(['mobile'=>$mobile])->where(['is_disabled'=>CommonEnum::IS_DISABLED_NO])->orderByDesc( 'id')->first();
+        return static::query()->where(['mobile'=>$mobile])->where(['is_deleted'=>CommonEnum::IS_DELETED_NO])->orderByDesc( 'id')->first();
     }
 
     /**
@@ -120,7 +120,7 @@ class UsersModel extends Authenticatable implements JWTSubject
      */
     public function findByEmail($email)
     {
-        return static::query()->where(['email'=>$email])->where(['is_disabled'=>CommonEnum::IS_DISABLED_NO])->orderByDesc( 'id')->first();
+        return static::query()->where(['email'=>$email])->where(['is_deleted'=>CommonEnum::IS_DELETED_NO])->orderByDesc( 'id')->first();
     }
     /**
      * @return int

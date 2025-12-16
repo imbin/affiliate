@@ -16,6 +16,7 @@ class UserEnum
     const STATUS_REJECT = 3;//驳回
 
     const STATUS_TEXT_LIST = [
+        0 => '未操作',
         self::STATUS_PENDING => '待审核',
         self::STATUS_PASS => '审核通过',
         self::STATUS_REJECT => '驳回',

@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\DB;
 /**
  * This is the model class for table "user_balance".
  *
- * @property int $id
  * @property int $user_id 所属用户
  * @property float $balance 余额（可提现金额）
  * @property float $frozen 冻结金额（提现中）
@@ -64,7 +63,7 @@ class UserBalanceModel extends ValidateBaseModel
      */
     public function findBalance(int $userId)
     {
-        return static::query()->firstOrCreate([['user_id', '=', $userId]]);
+        return static::query()->where('user_id', '=', $userId)->firstOrCreate(['user_id' => $userId]);
     }
 
 }

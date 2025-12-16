@@ -59,12 +59,9 @@ class UserService extends BaseService
     }
     public function findByEmail($userName)
     {
-        $isEmail = filter_var($userName, FILTER_VALIDATE_EMAIL);
-        if ($isEmail) {
-            $model = UsersModel::singleton()->findByEmail( $userName);
-            if ($model) {
-                return $model;
-            }
+        $model = UsersModel::singleton()->findByEmail( $userName);
+        if ($model) {
+            return $model;
         }
         return null;
     }
@@ -96,10 +93,10 @@ class UserService extends BaseService
 
     public function editProfile(EditProfilePost $post, UsersModel $model)
     {
-        $model->birthday = $post->birthday;
-        $model->gender = $post->gender;
-        $model->email = $post->email;
-        $model->mobile = $post->mobile;
+        if ($post->birthday) $model->birthday = $post->birthday;
+        if ($post->gender) $model->gender = $post->gender;
+        if ($post->email) $model->email = $post->email;
+        if ($post->mobile) $model->mobile = $post->mobile;
         return $model->save();
 
     }

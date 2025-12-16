@@ -20,6 +20,7 @@ use App\Utils\UtilHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Log;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
@@ -42,9 +43,15 @@ class UserController extends Controller
         $password = $request->post('password');
 
         $userModel = $this->userService->login( $userName);
-        if (empty($userModel) || (false === UtilHelper::validPassword( $password, $userModel->passwd))) {
+        if (empty($userModel)) {
             $code = CodeEnum::USER_INVALID_ACCOUNT;
             $msg = __('user.invalid_account');
+            Log::error("not found user", ['userName' => $userName]);
+            return $this->jsonFail( $code, $msg);
+        } else if (false === ($check = UtilHelper::validPassword($password, $userModel->passwd))) {
+            $code = CodeEnum::USER_INVALID_ACCOUNT;
+            $msg = __('user.invalid_account');
+            Log::error("pwd check fail", ['check' => $check, 'input pwd' => $password, 'db pwd' => $userModel->passwd]);
             return $this->jsonFail( $code, $msg);
         }
         if ($userModel->isPassed()) {
@@ -62,9 +69,10 @@ class UserController extends Controller
             return $this->jsonFail( $code, $msg);
         }
 
+        Log::error("invalid user status", ['userName' => $userName, 'db status' => $userModel->status]);
         //驳回
-        list($code, $key) = CodeEnum::USER_INVALID_ACCOUNT;
-        $msg = Lang::get($key);
+        $code = CodeEnum::USER_INVALID_ACCOUNT;
+        $msg = __('user.invalid_account');
         return $this->jsonFail( $code, $msg);
 
     }
@@ -121,7 +129,7 @@ class UserController extends Controller
 
         if ($post->email && $post->email != $user->email) {
             $exists = $this->userService->findByEmail( $post->email );
-            if ($exists) {
+            if ($exists && $exists->id != $user->id) {
                 $code = CodeEnum::USER_EMAIL_EXISTS;
                 return $this->jsonFail( $code, __('user.email_exists'));
             }

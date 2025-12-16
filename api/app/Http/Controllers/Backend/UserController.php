@@ -39,7 +39,7 @@ class UserController extends Controller
 
         foreach ($list as $item) {
             $item->status_text = UserEnum::STATUS_TEXT_LIST[$item->status] ?? '';
-            $item->disable_text = CommonEnum::DISABLED_TEXT_LIST[$item->is_disabled] ?? '';
+            $item->disable_text = CommonEnum::DELETED_TEXT_LIST[$item->is_deleted] ?? '';
         }
 
         return $this->jsonSuccess([
@@ -96,10 +96,10 @@ class UserController extends Controller
 
         switch ($action) {
             case 'enable'://启用
-                $ret = $this->userService->disableOrEnableRow($model, CommonEnum::IS_DISABLED_NO);
+                $ret = $this->userService->disableOrEnableRow($model, CommonEnum::IS_DELETED_NO);
                 break;
             case 'disable'://禁用
-                $ret = $this->userService->disableOrEnableRow($model, CommonEnum::IS_DISABLED_YES);
+                $ret = $this->userService->disableOrEnableRow($model, CommonEnum::IS_DELETED_YES);
                 break;
             case 'pass'://审核通过
                 $ret = $this->userService->updateStatusRow($model, UserEnum::STATUS_PASS);

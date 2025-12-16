@@ -13,7 +13,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/api', function () {
     return response()->json([
         'code' => 0,
         'msg' => 'Unknown request.'
@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 //不用检查登录的
-Route::group(['prefix' => '/', 'domain' => env('HOST_WEB'), 'namespace' => 'Frontend'], function () {
+Route::group(['prefix' => '/api', 'domain' => env('HOST_WEB'), 'namespace' => 'Frontend'], function () {
     Route::post('login', 'UserController@actionLogin');
     Route::post('register', 'UserController@actionRegister');
 
@@ -30,7 +30,7 @@ Route::group(['prefix' => '/', 'domain' => env('HOST_WEB'), 'namespace' => 'Fron
 });
 
 //用户中心要检查登录的
-Route::group(['prefix' => '/user', 'domain' => env('HOST_WEB'), 'middleware' => 'jwt:frontend', 'namespace' => 'Frontend'], function () {
+Route::group(['prefix' => '/api/user', 'domain' => env('HOST_WEB'), 'middleware' => 'jwt:frontend', 'namespace' => 'Frontend'], function () {
     Route::get('profile', 'UserController@actionGetProfile');
     Route::put('edit-profile', 'UserController@actionEditProfile');
     Route::put('edit-pwd', 'UserController@actionEditPwd');

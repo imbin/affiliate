@@ -36,10 +36,10 @@ class EditProfilePost extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'email',
-            'gender' => 'integer|in:1,2',
-            'mobile' => 'numeric|regex:/^1(\d{10})$/i',
-            'birthday' => 'date|date_format:Y-m-d',
+            'email' => 'nullable|email',
+            'gender' => 'nullable|integer|in:0,1,2',
+            'mobile' => 'nullable|numeric|regex:/^1(\d{10})$/i',
+            'birthday' => 'nullable|date|date_format:Y-m-d',
         ];
     }
     /**

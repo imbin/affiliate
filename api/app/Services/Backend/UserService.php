@@ -35,7 +35,7 @@ class UserService extends BaseService
      */
     public function disableOrEnableRow(UsersModel $model, int $val)
     {
-        $model->is_disabled = $val;
+        $model->is_deleted = $val;
         return $model->save();
     }
 

@@ -22,6 +22,6 @@ return [
     'invalid_token' => '登录已过期',
     'server_error' => '服务器错误',
     'invalid_parameter' => '参数错误',
-    'success' => '操作成功',
+    'success' => 'Success',
 
 ];
